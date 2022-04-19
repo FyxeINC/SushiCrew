@@ -2,13 +2,13 @@ using Terraria.ModLoader;
 
 namespace SushiCrew.Content.NPCs
 {
-	public abstract class NPC_Kyle : NPC_TownBase
+	public abstract class NPC_Keith : NPC_TownBase
 	{
         public override void SetDefaults()
         {
             base.SetDefaults();
 
-            PossibleNames = new string[] { "Kyle" };
+            PossibleNames = new string[] { "Keith" };
 
             #region Chats
             //PossibleBasicChats.Add("");

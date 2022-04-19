@@ -2,13 +2,13 @@ using Terraria.ModLoader;
 
 namespace SushiCrew.Content.NPCs
 {
-	public abstract class NPC_Kyle : NPC_TownBase
+	public abstract class NPC_Kelsey : NPC_TownBase
 	{
         public override void SetDefaults()
         {
             base.SetDefaults();
 
-            PossibleNames = new string[] { "Kyle" };
+            PossibleNames = new string[] { "Kelsey" };
 
             #region Chats
             //PossibleBasicChats.Add("");
@@ -17,7 +17,7 @@ namespace SushiCrew.Content.NPCs
             //ChatButtonName_1 = "Shop";
             //ChatButtonName_2 = "";
 
-            NPCGender = Gender.male;
+            NPCGender = Gender.female;
         }
     }
 }
