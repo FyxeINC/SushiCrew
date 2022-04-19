@@ -9,7 +9,7 @@ namespace SushiCrew.Content.NPCs
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-
+            //DisplayName.SetDefault();
             NPC.Happiness
                 .SetBiomeAffection<OceanBiome>(AffectionLevel.Like)
                 .SetBiomeAffection<ForestBiome>(AffectionLevel.Love)
@@ -27,16 +27,22 @@ namespace SushiCrew.Content.NPCs
 
             AnimationType = NPCID.Guide;
 
-            PossibleNames = new string[] { "Kyle" };
+            PossibleNames = new string[] { "Kyle","Kyleg" };
 
             #region Chats
-            //PossibleBasicChats.Add("");
+            PossibleBasicChats.Add("BEAT. THE. HELL. OUTTA. SKELETRON!!!!");
+            PossibleBasicChats.Add("I'm practicing my moves for the Boot Dance");
+            PossibleBasicChats.Add("BTHO my love life...");
+            PossibleBasicChats.Add("Have you seen the latest of Love Sky Island??");
+            PossibleBasicChats.Add("Between you and me, I think the Painter has a big crush on the Dryad.");
             #endregion
 
             //ChatButtonName_1 = "Shop";
             //ChatButtonName_2 = "";
 
             NPCGender = Gender.male;
+
+            AttackProjectileID = ProjectileID.Bullet;
         }
     }
 }
