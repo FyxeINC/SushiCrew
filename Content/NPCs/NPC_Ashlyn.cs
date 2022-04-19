@@ -53,20 +53,6 @@ namespace SushiCrew.Content.NPCs
 
             //MOD SHOPS
             BasicShopItems = new int[] { ModContent.ItemType<Content.Items.WallItem_00>(), ModContent.ItemType<Content.Items.WallItem_01>(), ModContent.ItemType<Content.Items.WallItem_02>(), ModContent.ItemType<Content.Items.WallItem_03>(), ModContent.ItemType<Content.Items.WindowItem_Test>(), ModContent.ItemType<Content.Items.TestWallItem>() };
-            /*
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Walls.Wallpaper_00.WallpaperItem_00>());
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Walls.Wallpaper_01.WallpaperItem_01>());
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Walls.Wallpaper_02.WallpaperItem_02>());
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Walls.Wallpaper_03.WallpaperItem_03>());
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Walls.Window_00.WindowItem_Test>());
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Walls.TestWallItem>());
-			nextSlot++;
-             */
 
             //BASIC SHOPS
             //BasicShopItems = new int[] { ItemID.Beenade };
