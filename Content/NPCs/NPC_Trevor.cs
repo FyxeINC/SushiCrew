@@ -9,7 +9,7 @@ namespace SushiCrew.Content.NPCs
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-
+            DisplayName.SetDefault("Troubador");
             NPC.Happiness
                 .SetBiomeAffection<ForestBiome>(AffectionLevel.Like) // Example Person prefers the forest.
                 .SetBiomeAffection<SnowBiome>(AffectionLevel.Love) // Example Person dislikes the snow.
@@ -53,6 +53,7 @@ namespace SushiCrew.Content.NPCs
 
             //BASIC SHOPS
             BasicShopItems = new int[] { ItemID.DrumSet,ItemID.DrumStick,ItemID.SparkleGuitar,ItemID.IvyGuitar,ItemID.CarbonGuitar,ItemID.Harp, ItemID.WhoopieCushion };
+            AttackProjectileID = ProjectileID.Glowstick;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace SushiCrew.Content.NPCs
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-
+            DisplayName.SetDefault("Chemist");
             NPC.Happiness
                 .SetBiomeAffection<OceanBiome>(AffectionLevel.Like) // Example Person prefers the forest.
                 .SetBiomeAffection<ForestBiome>(AffectionLevel.Love) // Example Person dislikes the snow.
@@ -42,6 +42,7 @@ namespace SushiCrew.Content.NPCs
             //ChatButtonName_2 = "";
 
             NPCGender = Gender.male;
+            //AttackProjectileID = ProjectileID.Glowstick;
         }
     }
 }

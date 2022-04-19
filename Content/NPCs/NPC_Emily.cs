@@ -9,6 +9,8 @@ namespace SushiCrew.Content.NPCs
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
+            DisplayName.SetDefault("Fisher");
+            //Main.npcFrameCount[NPC.type] = 23;
 
             NPC.Happiness
                 .SetBiomeAffection<OceanBiome>(AffectionLevel.Like)
@@ -37,6 +39,7 @@ namespace SushiCrew.Content.NPCs
             //ChatButtonName_2 = "";
 
             NPCGender = Gender.female;
+            //AttackProjectileID = ProjectileID.Glowstick;
         }
     }
 }

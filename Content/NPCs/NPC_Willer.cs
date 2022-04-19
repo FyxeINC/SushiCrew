@@ -10,7 +10,7 @@ namespace SushiCrew.Content.NPCs
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-
+            DisplayName.SetDefault("Pest");
             NPC.Happiness
                 .SetBiomeAffection<ForestBiome>(AffectionLevel.Like) // Example Person prefers the forest.
                 .SetBiomeAffection<SnowBiome>(AffectionLevel.Love) // Example Person dislikes the snow.
