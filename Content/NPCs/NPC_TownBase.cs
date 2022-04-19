@@ -29,6 +29,9 @@ namespace SushiCrew.Content.NPCs
 
         protected int[] BasicShopItems;
 
+        protected int AttackProjectileID;
+
+
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
@@ -69,6 +72,8 @@ namespace SushiCrew.Content.NPCs
             NPCGender = Gender.male;
 
             BasicShopItems = new int[] { };
+
+            AttackProjectileID = ProjectileID.WoodenArrowFriendly;
         }
 
         public override string TownNPCName()
@@ -170,7 +175,7 @@ namespace SushiCrew.Content.NPCs
 
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
         {
-            projType = ProjectileID.WoodenArrowFriendly;
+            projType = AttackProjectileID;
             attackDelay = 1;
         }
 
