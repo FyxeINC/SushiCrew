@@ -14,7 +14,8 @@ namespace SushiCrew.Content.NPCs
         other
     }
 
-	public abstract class NPC_TownBase : NPCBase
+    [AutoloadHead]
+    public abstract class NPC_TownBase : NPCBase
 	{
         protected string[] PossibleNames;
         protected WeightedRandom<string> PossibleBasicChats;
@@ -54,9 +55,11 @@ namespace SushiCrew.Content.NPCs
             NPC.townNPC = true;
             NPC.friendly = true;
 
+            NPC.aiStyle = 7;
             NPC.damage = 10;
             NPC.defense = 15;
             NPC.lifeMax = 250;
+            NPC.knockBackResist = 0.5f;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
 

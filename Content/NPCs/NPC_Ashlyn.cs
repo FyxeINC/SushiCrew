@@ -7,21 +7,22 @@ using Terraria.GameContent.Personalities;
 
 namespace SushiCrew.Content.NPCs
 {
-	public abstract class NPC_Ashlyn : NPC_TownBase
+	public class NPC_Ashlyn : NPC_TownBase
 	{
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
 
             NPC.Happiness
-                .SetBiomeAffection<OceanBiome>(AffectionLevel.Like)
-                .SetBiomeAffection<ForestBiome>(AffectionLevel.Love)
-                .SetBiomeAffection<SnowBiome>(AffectionLevel.Hate)
-                .SetBiomeAffection<DesertBiome>(AffectionLevel.Dislike)
-                .SetNPCAffection<NPC_Trevor>(AffectionLevel.Love)
-                .SetNPCAffection<NPC_Tyler>(AffectionLevel.Like)
-                .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
-                .SetNPCAffection(NPCID.GoblinTinkerer, AffectionLevel.Hate);
+                .SetBiomeAffection<ForestBiome>(AffectionLevel.Like) // Example Person prefers the forest.
+                .SetBiomeAffection<SnowBiome>(AffectionLevel.Love) // Example Person dislikes the snow.
+                .SetBiomeAffection<OceanBiome>(AffectionLevel.Hate) // Example Person dislikes the snow.
+                .SetBiomeAffection<DesertBiome>(AffectionLevel.Dislike) // Example Person dislikes the snow.
+
+                .SetNPCAffection<NPC_Trevor>(AffectionLevel.Love) // Loves living near the dryad.
+                .SetNPCAffection<NPC_Joe>(AffectionLevel.Like) // Likes living near the guide.
+                .SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Dislike) // Dislikes living near the merchant.
+                .SetNPCAffection(NPCID.PartyGirl, AffectionLevel.Hate); // Hates living near the demolitionist.
         }
 
         public override void SetDefaults()
@@ -46,6 +47,12 @@ namespace SushiCrew.Content.NPCs
             ChatButton1IsShop = true;
 
             NPCGender = Gender.female;
+
+            //MOD SHOPS
+            //BasicShopItems = new int[] {ModContent.ItemType<>};
+
+            //BASIC SHOPS
+            //BasicShopItems = new int[] { ItemID.Beenade };
         }
 
         public override string GetChat()
