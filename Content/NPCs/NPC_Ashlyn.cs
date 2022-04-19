@@ -41,6 +41,7 @@ namespace SushiCrew.Content.NPCs
             PossibleBasicChats.Add("I'm tired. Maybe I need caffeine. Or sleep. No, nevermind, not sleep, just caffeine.");
             PossibleBasicChats.Add("Trying to think of how I can remake this space. Got any ideas?", 2.0);
             PossibleBasicChats.Add("Wanna know a secret? I think the Troubador is a hottie with a body.", 0.5);
+            PossibleBasicChats.Add("If you tickle me, I'll kill you.", 1.0);
             #endregion
 
             ChatButtonName_1 = Language.GetTextValue("LegacyInterface.28"); // Shop
