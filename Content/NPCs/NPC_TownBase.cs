@@ -22,8 +22,12 @@ namespace SushiCrew.Content.NPCs
         protected string ChatButtonName_1;
         protected string ChatButtonName_2;
 
+        protected bool ChatButton1IsShop = false;
+        protected bool ChatButton2IsShop = false;
+
         protected Gender NPCGender;
 
+        protected int[] BasicShopItems;
 
         public override void SetStaticDefaults()
         {
@@ -34,6 +38,9 @@ namespace SushiCrew.Content.NPCs
         {
             base.SetDefaults();
 
+            NPC.townNPC = true;
+            NPC.friendly = true;
+
             PossibleNames = new string[] { "SETNAMES" };
             PossibleBasicChats = new WeightedRandom<string>();
 
@@ -41,6 +48,8 @@ namespace SushiCrew.Content.NPCs
             ChatButtonName_2 = "Button 2";
 
             NPCGender = Gender.male;
+
+            BasicShopItems = new int[] { };
         }
 
         public override string TownNPCName()
@@ -67,6 +76,34 @@ namespace SushiCrew.Content.NPCs
             button2 = ChatButtonName_2; 
         }
 
+        public override void OnChatButtonClicked(bool firstButton, ref bool shop)
+        {
+            if (firstButton)
+            {
+                OnFirstChatButtonClicked(ref shop);
+            }
+            else
+            {
+                OnSecondChatButtonClicked(ref shop);
+            }
+        }
+
+        protected virtual void OnFirstChatButtonClicked(ref bool shop)
+        {
+            if (ChatButton1IsShop)
+            {
+                shop = true;
+            }
+        }
+
+        protected virtual void OnSecondChatButtonClicked(ref bool shop)
+        {
+            if (ChatButton2IsShop)
+            {
+                shop = true;
+            }
+        }
+
         public override bool CanGoToStatue(bool toKingStatue)
         {
             if (NPCGender == Gender.male && toKingStatue)
@@ -84,5 +121,20 @@ namespace SushiCrew.Content.NPCs
 
             return false;
         }
+
+        public override void SetupShop(Chest shop, ref int nextSlot)
+        {
+            if (BasicShopItems.Length <= 0)
+            {
+                // No basic items setup
+                return;
+            }
+
+            foreach (int i in BasicShopItems)
+            {
+                shop.item[nextSlot].SetDefaults(i);
+                nextSlot++;
+            }
+        }        
     }
 }
