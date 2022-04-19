@@ -1,0 +1,146 @@
+Mods: {
+	BetterHomes: {
+
+		BiomeName: {
+			GraveyardBiome: Graveyard
+			SkyBiome: Sky
+			UnderworldBiome: Underworld
+			ForestBiome: Forest
+			SnowBiome: Snow
+			OceanBiome: Beach
+			DesertBiome: Desert
+		}
+
+		TownNPCMoodBiomes: {
+			GraveyardBiome: Graveyard
+			SkyBiome: Sky
+			UnderworldBiome: Underworld
+			ForestBiome: Forest
+			SnowBiome: Snow
+			OceanBiome: Beach
+			DesertBiome: Desert
+		}
+		
+		NPCName: 
+		{
+			TroubadourNPC: Troubadour
+			DecoratorNPC: Decorator
+		}
+		
+		TownNPCMood: {
+			Biomes: {
+			GraveyardBiome: Graveyard
+			SkyBiome: Sky
+			UnderworldBiome: Underworld
+			ForestBiome: Forest
+			SnowBiome: Snow
+			OceanBiome: Beach
+			DesertBiome: Desert
+			}
+			
+			#This is what displays during all of an NPC's happiness levels. Note that the localization key for these should always be "TownNPCMood.*NPCName*.*Mood*" or else it won't display properly.
+			NPC_Ashlyn: {
+				Content: Am chill.
+				NoHome: Where the fuck am I supposed to sleep?
+				LoveSpace: WIDE OPEN SPPACCESSSSSS, ROOM TO MAKE A BIG MISTAKE.
+				FarFromHome: I'm on an adventure.
+				DislikeCrowded: I need some me time.
+				HateCrowded: Why would you put me here, I'm an INTROVERT.
+				LikeBiome: "I enjoy being in the {BiomeName}."
+				LoveBiome: "{BiomeName} is the happiest place on earth."
+				DislikeBiome: "{BiomeName} is not my happy place."
+				HateBiome: "{BiomeName} is where dreams go to die."
+				LikeNPC: "{NPCName} is pretty chill."
+				LikeNPC_Princess: "I like {NPCName}."
+				LoveNPC: "I would fuck the shit out of {NPCName}."
+				DislikeNPC: "I get bad vibes from {NPCName}."
+				HateNPC: "Can you tell {NPCName} to shut the fuck up?"
+			}
+			NPC_Trevor: {
+				Content: I'm doing pretty good.
+				NoHome: Hey, mind if I crash on your couch?
+				LoveSpace: There's so much space that I bet I could set up a VR area.
+				FarFromHome: I'm on an adventure!
+				DislikeCrowded: I need to refuel my social meter.
+				HateCrowded: My social meter is completely drained.
+				LikeBiome: "I enjoy being in the {BiomeName}."
+				LoveBiome: "{BiomeName} is the happiest place on earth."
+				DislikeBiome: "{BiomeName} is awful. It makes me feel gross."
+				HateBiome: "{BiomeName} is the last place I want to be right now."
+				LikeNPC: "{NPCName} is pretty cool."
+				LikeNPC_Princess: "I like {NPCName}."
+				LoveNPC: "{NPCName} is one of my favorite people."
+				DislikeNPC: "Hot take, but {NPCName} is kind of a dick."
+				HateNPC: "{NPCName} is toxic and I have nothing to say to them."
+			}
+			NPC_Willer: {
+				Content: I'm doing solid.
+				NoHome: Hey, mind if I crash on your couch?
+				LoveSpace: I'm really digging having so much space to myself.
+				FarFromHome: I hate going out of town.
+				DislikeCrowded: I need some Willer time.
+				HateCrowded: My social meter is depleted.
+				LikeBiome: "I enjoy being in the {BiomeName}."
+				LoveBiome: "{BiomeName} is awesome."
+				DislikeBiome: "{BiomeName} just isn't my scene."
+				HateBiome: "I am not about the {BiomeName}."
+				LikeNPC: "{NPCName} is pretty neat."
+				LikeNPC_Princess: "I like {NPCName}."
+				LoveNPC: "I have a lot of respect for {NPCName}."
+				DislikeNPC: "{NPCName} is too much drama."
+				HateNPC: "{NPCName} gives me hella bad vibes."
+			}
+			NPC_Joe: {
+				Content: I'm doing really good!
+				NoHome: Hello, I'd like your fanciest room for free, please.
+				LoveSpace: I'm loving not living at the 'rents house.
+				FarFromHome: Gah, I feel like I'm always having to go out of town.
+				DislikeCrowded: I need some Joe time.
+				HateCrowded: Honestly, I'm at my limit with social interaction.
+				LikeBiome: "{BiomeName} is a beautiful place to live."
+				LoveBiome: "I think everyone should live in {BiomeName}."
+				DislikeBiome: "I do not like the {BiomeName}."
+				HateBiome: "I hate {BiomeName}."
+				LikeNPC: "I enjoy hanging with {NPCName}."
+				LikeNPC_Princess: "I like {NPCName}."
+				LoveNPC: "{NPCName} is one of my best friends."
+				DislikeNPC: "{NPCName} is too much drama."
+				HateNPC: "I'd like to avoid {NPCName} at all costs."
+			}
+			NPC_Tyler: {
+				Content: I'm doing okay.
+				NoHome: I'm going to crash at your place for a bit.
+				LoveSpace: I'm really happy with how my space is coming along.
+				FarFromHome: Just out of town on another trip.
+				DislikeCrowded: I just want to be alone for a bit. 
+				HateCrowded: Right now I just want to be alone in a cabin in the middle of the woods so that I don't have to talk to anyone.
+				LikeBiome: "{BiomeName} is pretty cool. I can't complain."
+				LoveBiome: "{BiomeName} is one of my favorite places. They've got some great skiing slopes!"
+				DislikeBiome: "I'm not a fan of {BiomeName}."
+				HateBiome: "I don't have a single good reason for it, but I hate {BiomeName}."
+				LikeNPC: "{NPCName} seems pretty chill."
+				LikeNPC_Princess: "I like {NPCName}."
+				LoveNPC: "{NPCName} is one of my best friends."
+				DislikeNPC: "{NPCName} gives me negative vibes, yo."
+				HateNPC: "{NPCName} is a no from me, dog."
+			}
+			NPC_Bradley: {
+				Content: I'm doing fucking awesome.
+				NoHome: Who's place am I crashing at tonight??
+				LoveSpace: Duuude, this place is so cool!
+				FarFromHome: *whistles tune*
+				DislikeCrowded: Goddamn this place is poppin'. Maybe too poppin'.
+				HateCrowded: Maannn, some of these muthafuckas need to move out. There's too many people here, yanno what I mean?
+				LikeBiome: "Yanno what, I like {BiomeName}, it's pretty nice"
+				LoveBiome: "I'm so glad I live in {BiomeName}, it's so prettyyyy :("
+				DislikeBiome: "Nooo, I don't want to live in {BiomeName}."
+				HateBiome: "Ya'll, I fucking hate {BiomeName}."
+				LikeNPC: "{NPCName} seems so coooool, I love them :("
+				LikeNPC_Princess: "I like {NPCName}."
+				LoveNPC: "{NPCName} is one of my favorite people everr."
+				DislikeNPC: "{NPCName} is okay, I guess."
+				HateNPC: "I don't like conflict, but {NPCName} makes me uncomfortable."
+			}
+		}
+	}
+}
