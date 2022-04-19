@@ -4,21 +4,22 @@ using Terraria.ID;
 
 namespace SushiCrew.Content.NPCs
 {
-	public abstract class NPC_Trevor : NPC_TownBase
+	public class NPC_Trevor : NPC_TownBase
     {
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
 
             NPC.Happiness
-                .SetBiomeAffection<OceanBiome>(AffectionLevel.Like)
-                .SetBiomeAffection<ForestBiome>(AffectionLevel.Love)
-                .SetBiomeAffection<SnowBiome>(AffectionLevel.Hate)
-                .SetBiomeAffection<DesertBiome>(AffectionLevel.Dislike)
-                .SetNPCAffection<NPC_Trevor>(AffectionLevel.Love)
-                .SetNPCAffection<NPC_Tyler>(AffectionLevel.Like)
-                .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
-                .SetNPCAffection(NPCID.GoblinTinkerer, AffectionLevel.Hate);
+                .SetBiomeAffection<ForestBiome>(AffectionLevel.Like) // Example Person prefers the forest.
+                .SetBiomeAffection<SnowBiome>(AffectionLevel.Love) // Example Person dislikes the snow.
+                .SetBiomeAffection<OceanBiome>(AffectionLevel.Hate) // Example Person dislikes the snow.
+                .SetBiomeAffection<DesertBiome>(AffectionLevel.Dislike) // Example Person dislikes the snow.
+
+                .SetNPCAffection<NPC_Austin>(AffectionLevel.Like) // Loves living near the dryad.
+                .SetNPCAffection<NPC_Ashlyn>(AffectionLevel.Love) // Likes living near the guide.
+                .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike) // Dislikes living near the merchant.
+                .SetNPCAffection(NPCID.GoblinTinkerer, AffectionLevel.Hate); // Hates living near the demolitionist.
         }
 
         public override void SetDefaults()
@@ -40,10 +41,18 @@ namespace SushiCrew.Content.NPCs
             PossibleBasicChats.Add("Don't tell anyone else I told you this, but I've got a big crush on Ash the Decorator.", 0.8);
             #endregion
 
-            //ChatButtonName_1 = "Shop";
-            //ChatButtonName_2 = "";
+            ChatButtonName_1 = "Shop";
+            ChatButtonName_2 = "Love";
+
+            ChatButton1IsShop = true;
 
             NPCGender = Gender.male;
+
+            //MOD SHOPS
+            //BasicShopItems = new int[] {ModContent.ItemType<>};
+
+            //BASIC SHOPS
+            BasicShopItems = new int[] { ItemID.DrumSet,ItemID.DrumStick,ItemID.SparkleGuitar,ItemID.IvyGuitar,ItemID.CarbonGuitar,ItemID.Harp, ItemID.WhoopieCushion };
         }
     }
 }
