@@ -41,6 +41,12 @@ namespace SushiCrew.Content.NPCs
             NPC.townNPC = true;
             NPC.friendly = true;
 
+            NPC.damage = 10;
+            NPC.defense = 15;
+            NPC.lifeMax = 250;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+
             PossibleNames = new string[] { "SETNAMES" };
             PossibleBasicChats = new WeightedRandom<string>();
 
@@ -135,6 +141,30 @@ namespace SushiCrew.Content.NPCs
                 shop.item[nextSlot].SetDefaults(i);
                 nextSlot++;
             }
-        }        
+        }
+
+        public override void TownNPCAttackStrength(ref int damage, ref float knockback)
+        {
+            damage = NPC.damage;
+            knockback = 4f;
+        }
+
+        public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)
+        {
+            cooldown = 30;
+            randExtraCooldown = 30;
+        }
+
+        public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
+        {
+            projType = ProjectileID.WoodenArrowFriendly;
+            attackDelay = 1;
+        }
+
+        public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset)
+        {
+            multiplier = 12f;
+            randomOffset = 2f;
+        }
     }
 }
