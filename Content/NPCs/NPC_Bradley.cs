@@ -25,6 +25,8 @@ namespace SushiCrew.Content.NPCs
         {
             base.SetDefaults();
 
+            AnimationType = NPCID.Guide;
+
             PossibleNames = new string[] { "Bradley" };
 
             #region Chats
