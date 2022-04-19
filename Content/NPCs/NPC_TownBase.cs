@@ -237,6 +237,7 @@ namespace SushiCrew.Content.NPCs
                 base.DrawTownAttackSwing(ref item, ref itemSize, ref scale, ref offset);
                 return;
             }
+            Main.instance.LoadItem(AttackMeleeItemID);
             item = TextureAssets.Item[AttackMeleeItemID].Value;
             itemSize = AttackMeleeItemSize;
             scale = AttackMeleeItemScale;
