@@ -1,0 +1,3 @@
+displayName = Sushi Crew
+author = Trash
+version = 0.1
