@@ -22,8 +22,8 @@ namespace SushiCrew.Content.NPCs
         protected string ChatButtonName_1;
         protected string ChatButtonName_2;
 
-        protected bool ChatButton1IsShop = false;
-        protected bool ChatButton2IsShop = false;
+        protected bool ChatButton1IsShop;
+        protected bool ChatButton2IsShop;
 
         protected Gender NPCGender;
 
@@ -52,6 +52,9 @@ namespace SushiCrew.Content.NPCs
 
             ChatButtonName_1 = "Button 1";
             ChatButtonName_2 = "Button 2";
+
+            ChatButton1IsShop = false;
+            ChatButton2IsShop = false;
 
             NPCGender = Gender.male;
 

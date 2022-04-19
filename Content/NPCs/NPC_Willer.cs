@@ -2,6 +2,7 @@ using Terraria.ModLoader;
 
 namespace SushiCrew.Content.NPCs
 {
+    [Autoload]
 	public abstract class NPC_Willer : NPC_TownBase
 	{
         public override void SetDefaults()
@@ -18,6 +19,7 @@ namespace SushiCrew.Content.NPCs
             //ChatButtonName_2 = "";
 
             NPCGender = Gender.male;
-        }
+
+        }        
     }
 }
