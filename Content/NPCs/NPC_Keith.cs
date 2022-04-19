@@ -37,6 +37,7 @@ namespace SushiCrew.Content.NPCs
             //ChatButtonName_2 = "";
 
             NPCGender = Gender.male;
+            //AttackProjectileID = ProjectileID.Glowstick;
         }
     }
 }

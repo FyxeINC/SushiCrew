@@ -9,7 +9,7 @@ namespace SushiCrew.Content.NPCs
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-
+            DisplayName.SetDefault("Chef");
             NPC.Happiness
                 .SetBiomeAffection<OceanBiome>(AffectionLevel.Like)
                 .SetBiomeAffection<ForestBiome>(AffectionLevel.Love)
@@ -49,6 +49,7 @@ namespace SushiCrew.Content.NPCs
             ChatButton1IsShop = true;
 
             NPCGender = Gender.male;
+            //AttackProjectileID = ProjectileID.Glowstick;
         }
     }
 }

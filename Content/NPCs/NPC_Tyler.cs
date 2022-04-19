@@ -9,7 +9,7 @@ namespace SushiCrew.Content.NPCs
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-
+            DisplayName.SetDefault("Bee Keeper");
             NPC.Happiness
                 .SetBiomeAffection<ForestBiome>(AffectionLevel.Like) // NPC prefers the forest.
                 .SetBiomeAffection<SnowBiome>(AffectionLevel.Love) // NPC dislikes the snow.
@@ -53,6 +53,8 @@ namespace SushiCrew.Content.NPCs
 
             //BASIC SHOPS
             BasicShopItems = new int[] { ItemID.Beenade,ItemID.BeeMask,ItemID.BeeHat, ItemID.BeeShirt,ItemID.BeePants,ItemID.BeeHive,ItemID.BeeKeeper,ItemID.BeesKnees };
+
+            AttackProjectileID = ProjectileID.Beenade;
         }
     }
 }
