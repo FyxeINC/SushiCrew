@@ -32,6 +32,16 @@ namespace SushiCrew.Content.NPCs
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
+
+            Main.npcFrameCount[NPC.type] = 26;
+            
+            NPCID.Sets.ExtraFramesCount[NPC.type] = 14;//9
+            NPCID.Sets.AttackFrameCount[NPC.type] = 5;//4
+            NPCID.Sets.DangerDetectRange[NPC.type] = 1000;
+            NPCID.Sets.AttackType[NPC.type] = 0;
+            NPCID.Sets.AttackTime[NPC.type] = 90;
+            NPCID.Sets.AttackAverageChance[NPC.type] = 50;
+            NPCID.Sets.HatOffsetY[NPC.type] = 4;
         }
 
         public override void SetDefaults()
@@ -168,6 +178,11 @@ namespace SushiCrew.Content.NPCs
         {
             multiplier = 12f;
             randomOffset = 2f;
+        }
+
+        public override bool CanTownNPCSpawn(int numTownNPCs, int money)
+        {
+            return true;
         }
     }
 }

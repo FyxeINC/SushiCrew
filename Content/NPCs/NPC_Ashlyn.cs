@@ -1,15 +1,34 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Utilities;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.GameContent.Personalities;
 
 namespace SushiCrew.Content.NPCs
 {
 	public abstract class NPC_Ashlyn : NPC_TownBase
 	{
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+
+            NPC.Happiness
+                .SetBiomeAffection<OceanBiome>(AffectionLevel.Like)
+                .SetBiomeAffection<ForestBiome>(AffectionLevel.Love)
+                .SetBiomeAffection<SnowBiome>(AffectionLevel.Hate)
+                .SetBiomeAffection<DesertBiome>(AffectionLevel.Dislike)
+                .SetNPCAffection<NPC_Trevor>(AffectionLevel.Love)
+                .SetNPCAffection<NPC_Tyler>(AffectionLevel.Like)
+                .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
+                .SetNPCAffection(NPCID.GoblinTinkerer, AffectionLevel.Hate);
+        }
+
         public override void SetDefaults()
         {
             base.SetDefaults();
+
+            AnimationType = NPCID.Stylist;
 
             PossibleNames = new string[] { "Ash", "Ashlyn", "Smashlyn", "Ashbumbash", "Smash", "Ashy", "Splashlyn", "Smashiyn" };
             
