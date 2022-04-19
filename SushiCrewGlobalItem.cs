@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace SushiCrew
 {
-	public class SushiCrew : Mod
+	public class SushiCrewGlobalItem : GlobalItem
 	{
 		
 	}
