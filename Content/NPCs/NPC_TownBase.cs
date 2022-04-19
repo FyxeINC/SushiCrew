@@ -4,6 +4,8 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace SushiCrew.Content.NPCs
 {
@@ -30,8 +32,20 @@ namespace SushiCrew.Content.NPCs
 
         protected int[] BasicShopItems;
 
+        /// <summary>
+        /// Used when AttackType is set to 0, 1, or 2
+        /// </summary>
         protected int AttackProjectileID;
-
+        /// <summary>
+        /// Used when AttackType is set to 1
+        /// </summary>
+        protected int AttackGunItemID;
+        protected float AttackGunItemScale;
+        protected int AttackGunItemCloseness;
+        /// <summary>
+        /// Used when AttackType is set to 3
+        /// </summary>
+        //protected int AttackMeleeItemID;  // TODO - #TownBase        
 
         public override void SetStaticDefaults()
         {
@@ -77,6 +91,11 @@ namespace SushiCrew.Content.NPCs
             BasicShopItems = new int[] { };
 
             AttackProjectileID = ProjectileID.WoodenArrowFriendly;
+
+            AttackGunItemID = -1;
+            AttackGunItemScale = 1f;
+            AttackGunItemCloseness = 40;
+
         }
 
         public override string TownNPCName()
@@ -187,6 +206,31 @@ namespace SushiCrew.Content.NPCs
             multiplier = 12f;
             randomOffset = 2f;
         }
+
+        public override void DrawTownAttackGun(ref float scale, ref int item, ref int closeness)
+        {
+            if (AttackGunItemID == -1)
+            {
+                base.DrawTownAttackGun(ref scale, ref item, ref closeness);
+                return;
+            }
+
+            item = AttackGunItemID;
+            scale = AttackGunItemScale;
+            closeness = AttackGunItemCloseness;
+        }
+
+        // TODO - #TownBase
+        //public override void DrawTownAttackSwing(ref Texture2D item, ref int itemSize, ref float scale, ref Vector2 offset)
+        //{
+        //    if (AttackMeleeItemID == -1)
+        //    {
+        //        base.DrawTownAttackSwing(ref item, ref itemSize, ref scale, ref offset);
+        //        return;
+        //    }
+
+
+        //}
 
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
