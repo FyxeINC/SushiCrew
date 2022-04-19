@@ -39,8 +39,8 @@ namespace SushiCrew.Content.NPCs
             PossibleBasicChats.Add("Are there any sodas left?");
             PossibleBasicChats.Add("We should make pizza for dinner!");
             PossibleBasicChats.Add("I'm tired. Maybe I need caffeine. Or sleep. No, nevermind, not sleep, just caffeine.");
-            PossibleBasicChats.Add("This message has a weight of 5, meaning it appears 5 times more often. Bitches.", 5.0);
-            PossibleBasicChats.Add("This message has a weight of 0.1, meaning it appears 10 times as rare. Cunts.", 0.1);
+            PossibleBasicChats.Add("Trying to think of how I can remake this space. Got any ideas?", 2.0);
+            PossibleBasicChats.Add("Wanna know a secret? I think the Troubador is a hottie with a body.", 0.5);
             #endregion
 
             ChatButtonName_1 = Language.GetTextValue("LegacyInterface.28"); // Shop
