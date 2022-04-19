@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Terraria.GameContent;
 
 namespace SushiCrew.Content.NPCs
 {
@@ -45,7 +46,10 @@ namespace SushiCrew.Content.NPCs
         /// <summary>
         /// Used when AttackType is set to 3
         /// </summary>
-        //protected int AttackMeleeItemID;  // TODO - #TownBase        
+        protected int AttackMeleeItemID;  
+        protected int AttackMeleeItemSize;  
+        protected float AttackMeleeItemScale;  
+        protected Vector2 AttackMeleeItemOffset;
 
         public override void SetStaticDefaults()
         {
@@ -95,6 +99,11 @@ namespace SushiCrew.Content.NPCs
             AttackGunItemID = -1;
             AttackGunItemScale = 1f;
             AttackGunItemCloseness = 40;
+
+            AttackMeleeItemID = -1;
+            AttackMeleeItemSize = 1;
+            AttackMeleeItemScale = 1f;
+            AttackMeleeItemOffset = Vector2.Zero;
 
         }
 
@@ -218,19 +227,21 @@ namespace SushiCrew.Content.NPCs
             item = AttackGunItemID;
             scale = AttackGunItemScale;
             closeness = AttackGunItemCloseness;
+            
         }
-
-        // TODO - #TownBase
-        //public override void DrawTownAttackSwing(ref Texture2D item, ref int itemSize, ref float scale, ref Vector2 offset)
-        //{
-        //    if (AttackMeleeItemID == -1)
-        //    {
-        //        base.DrawTownAttackSwing(ref item, ref itemSize, ref scale, ref offset);
-        //        return;
-        //    }
-
-
-        //}
+        
+        public override void DrawTownAttackSwing(ref Texture2D item, ref int itemSize, ref float scale, ref Vector2 offset)
+        {
+            if (AttackMeleeItemID == -1)
+            {
+                base.DrawTownAttackSwing(ref item, ref itemSize, ref scale, ref offset);
+                return;
+            }
+            item = TextureAssets.Item[AttackMeleeItemID].Value;
+            itemSize = AttackMeleeItemSize;
+            scale = AttackMeleeItemScale;
+            offset = AttackMeleeItemOffset;
+        }
 
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
