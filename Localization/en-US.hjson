@@ -43,7 +43,7 @@ Mods: {
 				Content: Am chill.
 				NoHome: Where the fuck am I supposed to sleep?
 				LoveSpace: WIDE OPEN SPPACCESSSSSS, ROOM TO MAKE A BIG MISTAKE.
-				FarFromHome: I'm on an adventure.
+				FarFromHome: Jesus Christ, google maps has me running in circles!
 				DislikeCrowded: I need some me time.
 				HateCrowded: Why would you put me here, I'm an INTROVERT.
 				LikeBiome: "I enjoy being in the {BiomeName}."
@@ -174,6 +174,23 @@ Mods: {
 				LoveNPC: "I love hanging out with {NPCName}."
 				DislikeNPC: "{NPCName} is okay, I guess."
 				HateNPC: "I love drama, but {NPCName} is too much for me."
+			}
+			NPC_Kelsey: {
+				Content: Today is going alright.
+				NoHome: Can Soph and I crash at your place tonight?
+				LoveSpace: I love the place you set us up in! I hate building/decorating.
+				FarFromHome: Yo, I think I'm lost. Where's home again?
+				DislikeCrowded: I'm glad to be surrounded by people, but I'm feeling squished.
+				HateCrowded: The number of people here is overwhelming.
+				LikeBiome: "I like {BiomeName}, it's alright."
+				LoveBiome: "I really love {BiomeName}, it's super cute."
+				DislikeBiome: I don't like living here, I'm going to sell my house and move closer to friends.
+				HateBiome: "Why would you move me to {BiomeName}?? This place sucks."
+				LikeNPC: "I enjoy hanging out with {NPCName}."
+				LikeNPC_Princess: "I like {NPCName}, they seem to understand my need for adventure."
+				LoveNPC: "{NPCName} is my best friend!"
+				DislikeNPC: "{NPCName} annoys me sometimes."
+				HateNPC: "Can you please tell {NPCName} to shut the fuck up?"
 			}
 		}
 	}

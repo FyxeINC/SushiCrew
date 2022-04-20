@@ -26,6 +26,8 @@ namespace SushiCrew.Content.NPCs
             base.SetDefaults();
 
             AnimationType = NPCID.Guide;
+            NPC.width = 25;//18
+            NPC.height = 40;//40
 
             PossibleNames = new string[] { "Keith" };
 

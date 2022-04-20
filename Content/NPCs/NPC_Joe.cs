@@ -15,7 +15,7 @@ namespace SushiCrew.Content.NPCs
                 .SetBiomeAffection<SnowBiome>(AffectionLevel.Love) // Example Person dislikes the snow.
                 .SetBiomeAffection<OceanBiome>(AffectionLevel.Hate) // Example Person dislikes the snow.
                 .SetBiomeAffection<DesertBiome>(AffectionLevel.Dislike) // Example Person dislikes the snow.
-
+                .SetNPCAffection<NPC_Kelsey>(AffectionLevel.Like) // Likes living near the guide.
                 .SetNPCAffection<NPC_Ashlyn>(AffectionLevel.Like) // Likes living near the guide.
                 .SetNPCAffection<NPC_Willer>(AffectionLevel.Love) // Likes living near the guide.
                 .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike) // Dislikes living near the merchant.
@@ -28,6 +28,8 @@ namespace SushiCrew.Content.NPCs
             base.SetDefaults();
 
             AnimationType = NPCID.Guide;
+            NPC.width = 25;//18
+            NPC.height = 40;//40
 
             PossibleNames = new string[] { "Joe","Jojo","Obiloyd","Joseph" };
 
