@@ -7,8 +7,8 @@ namespace SushiCrew.Content.QuestSystem
     public enum QuestID
     {
         None,
-        Example_Blank,
-        Example_Kill,
-        Example_Acquire
+        Example_00_Blank,
+        Example_01_Kill,
+        Example_02_Acquire
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
@@ -16,12 +17,78 @@ namespace SushiCrew.Content.QuestSystem
         public Dictionary<QuestID, QuestInstance> ActiveQuestCollection = new Dictionary<QuestID, QuestInstance>();
         public List<QuestID> CompletedQuestCollection = new List<QuestID>();
 
+        internal static Item[] previousInventoryItems;
 
         public override void Initialize()
         {
             base.Initialize();
             ActiveQuestCollection = new Dictionary<QuestID, QuestInstance>();
             CompletedQuestCollection = new List<QuestID>();
+
+            previousInventoryItems = new Item[this.Player.inventory.Length];
+            SetPreviousInventory();
+        }
+
+        public override void PostUpdate()
+        {
+            if (ItemChanged())
+            {
+                foreach (KeyValuePair<QuestID, QuestInstance> i in ActiveQuestCollection)
+                {
+                    foreach (QuestTaskInstanceBase j in i.Value.TaskInstanceCollection)
+                    {
+                        j.OnPlayerInventoryChanged(this);
+                    }
+                }
+                SetPreviousInventory();
+            }
+        }
+
+        bool ItemChanged()
+        {   
+            if (this.Player == null)
+            {
+                return false;
+            }
+            else if (this.Player.inventory == null)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < this.Player.inventory.Length - 1; i++)
+            {
+                if (this.Player.inventory[i] == null && previousInventoryItems[i] != null)
+                {
+                    return true;
+                }
+                if (this.Player.inventory[i] != null && previousInventoryItems[i] == null)
+                {
+                    return true;
+                }
+                if (this.Player.inventory[i] != null && previousInventoryItems[i] != null)
+                {
+                    if (this.Player.inventory[i].IsNotSameTypePrefixAndStack(previousInventoryItems[i]))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        void SetPreviousInventory()
+        {            
+            for (int i = 0; i < this.Player.inventory.Length; i++)
+            {
+                if (this.Player.inventory[i] == null)
+                {
+                    previousInventoryItems[i] = null;
+                }
+                else
+                {
+                    previousInventoryItems[i] = this.Player.inventory[i].Clone();
+                }
+            }
         }
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
@@ -116,6 +183,15 @@ namespace SushiCrew.Content.QuestSystem
             ActiveQuestCollection.Add(newQuestInstance.CurrentData.QuestID, newQuestInstance);
 
             Main.NewText("Quest Added. ID:" + questID);
+
+            // Force an inventory update 
+            foreach (KeyValuePair<QuestID, QuestInstance> i in ActiveQuestCollection)
+            {
+                foreach (QuestTaskInstanceBase j in i.Value.TaskInstanceCollection)
+                {
+                    j.OnPlayerInventoryChanged(this);
+                }
+            }
 
             return true;
         }

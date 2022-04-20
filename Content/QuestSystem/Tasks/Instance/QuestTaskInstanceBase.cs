@@ -27,6 +27,7 @@ namespace SushiCrew.Content.QuestSystem
             }
         }
 
+        public virtual void OnPlayerInventoryChanged(QuestPlayer player) { }
 
         public abstract void SaveData(QuestInstance questInstance, TagCompound tag);
 

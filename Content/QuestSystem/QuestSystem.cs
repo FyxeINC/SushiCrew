@@ -39,7 +39,7 @@ namespace SushiCrew.Content.QuestSystem
 
             // This is a blank quest, used for designers to understand how to create one
             newQuest = new QuestData(
-                QuestID.Example_Blank,                      // QuestID, needs to be unique for every quest. Found in QuestID.cs
+                QuestID.Example_00_Blank,                      // QuestID, needs to be unique for every quest. Found in QuestID.cs
                 "Quest 1",                                  // QuestName, does not need to be unique
                 "Quest 1 Description",                      // Quest description
                 new List<int>                               // (Unimplemented) Quest giver, determines who can give it out. "-1" is any sushi NPC
@@ -67,7 +67,7 @@ namespace SushiCrew.Content.QuestSystem
 
             // Kill 5 slimes
             newQuest = new QuestData(
-                QuestID.Example_Kill, 
+                QuestID.Example_01_Kill, 
                 "Kill 5 Slimes",
                 "Kill 5 Slimes from the overworld.",
                 new List<int> 
@@ -80,7 +80,7 @@ namespace SushiCrew.Content.QuestSystem
                 },
                 new List<QuestRequirementDataBase>
                 {
-                    new QuestRequirementData_NotCompletedQuests(new List<QuestID> { QuestID.Example_Kill })  // Used to not let this quest be repeatable
+                    new QuestRequirementData_NotCompletedQuests(new List<QuestID> { QuestID.Example_01_Kill })  // Used to not let this quest be repeatable
                 },
                 new List<QuestTaskDataBase>
                 {
@@ -89,14 +89,14 @@ namespace SushiCrew.Content.QuestSystem
                 },
                 new List<QuestRewardDataBase> 
                 { 
-                    new QuestRewardData_Item(ItemID.DirtBomb, 3, 8) 
+                    new QuestRewardData_GiveItem(ItemID.DirtBomb, 3, 8) 
                 }
                 );
             QuestDataCollection.TryAdd(newQuest.QuestID, newQuest);
 
             // Acquire 10 gel
             newQuest = new QuestData(
-                QuestID.Example_Acquire,
+                QuestID.Example_02_Acquire,
                 "Acquire 10 gel",
                 "Acquire 10 blue gel.",
                 new List<int>
@@ -117,14 +117,15 @@ namespace SushiCrew.Content.QuestSystem
                 },
                 new List<QuestRewardDataBase>
                 {
-                    new QuestRewardData_Item(ItemID.DirtBomb, 3, 8)
+                    new QuestRewardData_RemoveItem(ItemID.Gel, 10, 10),
+                    new QuestRewardData_GiveItem(ItemID.DirtBomb, 3, 8)
                 }
                 );
             QuestDataCollection.TryAdd(newQuest.QuestID, newQuest);
 
             #endregion // Example Quests
         }
-       
+
         //public override void OnWorldLoad()
         //{
         //    base.OnWorldLoad();

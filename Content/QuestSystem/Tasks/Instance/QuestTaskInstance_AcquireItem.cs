@@ -32,6 +32,24 @@ namespace SushiCrew.Content.QuestSystem
             return ((float)CurrentAcquiredItems) / ((float)m_ItemsRequired);            
         }
 
+        public override void OnPlayerInventoryChanged(QuestPlayer player)
+        {
+            base.OnPlayerInventoryChanged(player);
+            CurrentAcquiredItems = 0;
+            for (int i = 0; i < player.Player.inventory.Length - 1; i++)
+            {
+                if (CurrentData_AcquireItem.ItemIDCollection.Contains(player.Player.inventory[i].type))
+                {
+                    CurrentAcquiredItems += player.Player.inventory[i].stack;
+                }
+            }
+
+            if (CurrentAcquiredItems >= m_ItemsRequired)
+            {
+                CurrentQuestState = QuestState.pendingCompleted;
+            }
+        }
+
 
         public override void SaveData(QuestInstance questInstance, TagCompound tag)
         {
