@@ -21,6 +21,10 @@ namespace SushiCrew.Content.QuestSystem
                 {
                     return false;
                 }
+                if (player.ActiveQuestCollection.ContainsKey(i))
+                {
+                    return false;
+                }
             }
             return true;
         }

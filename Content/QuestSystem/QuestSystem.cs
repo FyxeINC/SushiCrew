@@ -37,30 +37,33 @@ namespace SushiCrew.Content.QuestSystem
 
             #region Example Quests       
 
-            // This is a blank quest, used for designers to understand how to create one
+            // This is a blank quest, used to showcase everything possible with the current quest system.
             newQuest = new QuestData(
                 QuestID.Example_00_Blank,                      // QuestID, needs to be unique for every quest. Found in QuestID.cs
                 "Quest 1",                                  // QuestName, does not need to be unique
                 "Quest 1 Description",                      // Quest description
-                new List<int>                               // (Unimplemented) Quest giver, determines who can give it out. "-1" is any sushi NPC
+                new List<int>                               // (Unimplemented) Quest giver, determines who can give it out. An empty list means any sushi NPC
                 {
                     ModContent.NPCType<NPC_Ashlyn>()
                 },
-                new List<int>                               // (Unimplemented) Quest reciever, determines who can complete it. "-1" is any sushi NPC
+                new List<int>                               // (Unimplemented) Quest reciever, determines who can complete it. An empty list means any sushi NPC
                 {
                     ModContent.NPCType<NPC_Ashlyn>()
                 },
                 new List<QuestRequirementDataBase>          // Requirements for this quest to be available
                 {
-
+                    //new QuestRequirementData_CompletedQuests(new List<QuestID> { QuestID.Example_01_Kill })               // Given quests must be completed before this one can start
+                    //new QuestRequirementData_NotCompletedQuests(new List<QuestID> { QuestID.Example_01_Kill })            // Given quests cannot be completed or active before this one can start
                 },
                 new List<QuestTaskDataBase>                 // List of Tasks. Kill X NPCs, talk to X, etc.
                 {
-                
+                    //new QuestTaskData_NPCKills("Kill1Slime", 1, new List<int> { NPCID.BlueSlime, NPCID.GreenSlime })      // Kill X amount of NPCs
+                    //new QuestTaskData_AcquireItem("Acquire10Gel", 10, new List<int> { ItemID.Gel })                       // Acquire X amount of items
                 },
                 new List<QuestRewardDataBase>               // List of rewards. Give X items, etc.
                 {
-                
+                    //new QuestRewardData_RemoveItem(ItemID.Gel, 10, 10)                                                    // Removes x item from players inventory (useful for AcquireItem tasks)
+                    //new QuestRewardData_GiveItem(ItemID.DirtBomb, 3, 8)                                                   // Gives the player min-max of said item
                 }
                 );  // Quest data end
             QuestDataCollection.TryAdd(newQuest.QuestID, newQuest);  // Add the quest to the collection, allows it to be used by the system            
@@ -129,7 +132,7 @@ namespace SushiCrew.Content.QuestSystem
         //public override void OnWorldLoad()
         //{
         //    base.OnWorldLoad();
-        // Was perviously used to setup quest data, however player load was called after, causing issues 
+        // Was perviously used to setup quest data, however Player.Load was called after, causing issues 
         //}
 
         //public List<int> GetQuestIDsForNPC(int npcIDToGetFor)
