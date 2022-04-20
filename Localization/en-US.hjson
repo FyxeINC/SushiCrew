@@ -141,6 +141,40 @@ Mods: {
 				DislikeNPC: "{NPCName} is okay, I guess."
 				HateNPC: "I don't like conflict, but {NPCName} makes me uncomfortable."
 			}
+			NPC_Emily: {
+				Content: Feeling great!
+				NoHome: I'm moving in with Bradley soon.
+				LoveSpace: I looovee my house! It's so cuuttee :(
+				FarFromHome: God DAMN it's going to take forever to get all the way home from here.
+				DislikeCrowded: I'm a tiny person and I still feel too cramped here.
+				HateCrowded: I'm a tiny person and I still feel too cramped here.
+				LikeBiome: "I really like {BiomeName}, but it would be so cool to live in the Hallow!"
+				LoveBiome: "Omg I looovee {BiomeName}, it's my favoritee. The unicorns are mean but they are so cool to look at from the safety of my home."
+				DislikeBiome: "I lived in Florida long enough, I'm tired of the fucking heat here in {BiomeName}."
+				HateBiome: "As a Floridian, I am not accustomed to {BiomeName}."
+				LikeNPC: "I wanna be frands with {NPCName}!"
+				LikeNPC_Princess: "I like {NPCName}."
+				LoveNPC: "I'm crazy about {NPCName}."
+				DislikeNPC: "{NPCName} is okay, I guess."
+				HateNPC: "I don't like {NPCName}."
+			}
+			NPC_Kyle: {
+				Content: I'm having a great day!
+				NoHome: You can crash on my couch tonig- wait! I don't have a house?!
+				LoveSpace: I like this space a lot. It isn't as functional as I'd like, but it's perty.
+				FarFromHome: *whistles tune*
+				DislikeCrowded: This place is a fucking party.
+				HateCrowded: Okay, there's officially too many people here. I need my own space still, yanno?
+				LikeBiome: "Yanno what, I like {BiomeName}, it's pretty nice"
+				LoveBiome: "{BiomeName} is my favorite place, perfect place start when going on a looting spree."
+				DislikeBiome: "Nooo, I don't want to live in {BiomeName}."
+				HateBiome: Please don't make me live here :(
+				LikeNPC: "{NPCName} seems cool!"
+				LikeNPC_Princess: "I like {NPCName}."
+				LoveNPC: "I love hanging out with {NPCName}."
+				DislikeNPC: "{NPCName} is okay, I guess."
+				HateNPC: "I love drama, but {NPCName} is too much for me."
+			}
 		}
 	}
 }

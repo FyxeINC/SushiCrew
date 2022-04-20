@@ -7,7 +7,7 @@ using Terraria.GameContent.Personalities;
 
 namespace SushiCrew.Content.NPCs
 {
-	public abstract class NPC_Emily : NPC_TownBase
+	public class NPC_Emily : NPC_TownBase
     {
         public override void SetStaticDefaults()
         {

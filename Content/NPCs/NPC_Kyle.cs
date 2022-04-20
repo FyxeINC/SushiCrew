@@ -4,7 +4,7 @@ using Terraria.ID;
 
 namespace SushiCrew.Content.NPCs
 {
-	public abstract class NPC_Kyle : NPC_TownBase
+	public class NPC_Kyle : NPC_TownBase
     {
         public override void SetStaticDefaults()
         {
