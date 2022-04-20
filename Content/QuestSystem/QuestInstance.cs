@@ -68,5 +68,6 @@ namespace SushiCrew.Content.QuestSystem
 
 
         public virtual void OnPlayerKilledNPC(NPC npcKilled) { }
+
     }
 }

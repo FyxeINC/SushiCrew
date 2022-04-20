@@ -4,11 +4,11 @@ using Terraria.ModLoader;
 
 namespace SushiCrew.Content.QuestSystem
 {
-    public class QuestRequirementData_CompletedQuests : QuestRequirementDataBase
+    public class QuestRequirementData_NotCompletedQuests : QuestRequirementDataBase
     {
         List<int> QuestIDsToCheckCollection = new List<int>();
 
-        public QuestRequirementData_CompletedQuests(List<int> questIDs)
+        public QuestRequirementData_NotCompletedQuests(List<int> questIDs)
         {
             QuestIDsToCheckCollection = questIDs;
         }
@@ -17,7 +17,7 @@ namespace SushiCrew.Content.QuestSystem
         {
             foreach (var i in QuestIDsToCheckCollection)
             {
-                if (!player.CompletedQuestCollection.Contains(i))
+                if (player.CompletedQuestCollection.Contains(i))
                 {
                     return false;
                 }

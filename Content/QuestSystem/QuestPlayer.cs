@@ -107,10 +107,11 @@ namespace SushiCrew.Content.QuestSystem
                 return false;
             }
 
-            if (CompletedQuestCollection.Contains(questID))
+            if (!questSystem.DoesPlayerMeetRequirementsForQuest(this, questID))
             {
                 return false;
             }
+
             return true;
         }
 

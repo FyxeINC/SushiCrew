@@ -5,6 +5,6 @@ namespace SushiCrew.Content.QuestSystem
 {
     public abstract class QuestRequirementDataBase
     {
-        public abstract bool DoesMeetRequirements(QuestPlayer player);
+        public abstract bool DoesPlayerMeetRequirements(QuestPlayer player);
     }
 }

@@ -64,7 +64,7 @@ namespace SushiCrew.Content.QuestSystem
                 {
                 
                 }
-                );
+                );  // Quest data end
             QuestDataCollection.TryAdd(QuestID, newQuest);  // Add the quest to the collection, allows it to be used by the system
             QuestID++;                                      // Increments the questID for the next quest
 
@@ -83,7 +83,7 @@ namespace SushiCrew.Content.QuestSystem
                 },
                 new List<QuestRequirementDataBase>
                 {
-
+                    new QuestRequirementData_NotCompletedQuests(new List<int> { QuestID })  // Used to not let this quest be repeatable
                 },
                 new List<QuestTaskDataBase>
                 {
@@ -131,6 +131,26 @@ namespace SushiCrew.Content.QuestSystem
 
             QuestInstance newQuestInstance = new QuestInstance(QuestDataCollection[questID]);
             return newQuestInstance;
+        }
+
+        public bool DoesPlayerMeetRequirementsForQuest(QuestPlayer player, int questID)
+        {
+            if (!QuestDataCollection.ContainsKey(questID))
+            {
+                return false;
+            }
+
+            QuestData questData = QuestDataCollection[questID];
+
+            foreach (QuestRequirementDataBase i in questData.RequirementCollection)
+            {
+                if (!i.DoesPlayerMeetRequirements(player))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
