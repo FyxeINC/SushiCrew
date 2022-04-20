@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace SushiCrew.Content.QuestSystem
 {
@@ -179,6 +180,19 @@ namespace SushiCrew.Content.QuestSystem
                 CompletedQuestCollection.Add(questID);
             }
             return true;
+        }
+
+        public override void SaveData(TagCompound tag)
+        {
+            tag.Add("CompletedQuestCollection", CompletedQuestCollection);
+        }
+        
+        public override void LoadData(TagCompound tag)
+        {
+            if (tag.ContainsKey("CompletedQuestCollection"))
+            {
+                CompletedQuestCollection = (List<int>)tag.GetList<int>("CompletedQuestCollection");
+            }
         }
     }
 }

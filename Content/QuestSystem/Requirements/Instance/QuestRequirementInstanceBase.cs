@@ -14,5 +14,17 @@ namespace SushiCrew.Content.QuestSystem
 
         public virtual void OnPlayerKilledNPC(NPC npcKilled, QuestPlayer questPlayer) { }
 
+        public virtual string GetDisplayString()
+        { 
+            if (CurrentQuestState == QuestState.pendingCompleted)
+            {
+                return "Completed!";
+            }
+            else
+            {
+                return DisplayString;
+            }
+        }
+
     }
 }

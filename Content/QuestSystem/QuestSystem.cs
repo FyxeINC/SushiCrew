@@ -16,6 +16,7 @@ namespace SushiCrew.Content.QuestSystem
         public override void OnWorldLoad()
         {
             base.OnWorldLoad();
+            QuestDataCollection.Clear();
 
             int QuestID = 0;
             QuestData newQuest;
@@ -34,8 +35,7 @@ namespace SushiCrew.Content.QuestSystem
                 new List<QuestRequirementDataBase> { },
                 new List<QuestRewardDataBase> { }
                 );
-            QuestDataCollection.Add(QuestID, newQuest);
-            Main.NewText("Quest Initialized. ID:" + QuestID);
+            QuestDataCollection.TryAdd(QuestID, newQuest);            
             QuestID++;
 
             // Kill 5 slimes
@@ -48,8 +48,7 @@ namespace SushiCrew.Content.QuestSystem
                 new List<QuestRequirementDataBase> { new QuestRequirementData_NPCKills(1, new List<int> { NPCID.BlueSlime, NPCID.GreenSlime }) },
                 new List<QuestRewardDataBase> { new QuestRewardData_Item(ItemID.DirtBomb, 7) }
                 );
-            QuestDataCollection.Add(QuestID, newQuest);
-            Main.NewText("Quest Initialized. ID:" + QuestID);
+            QuestDataCollection.TryAdd(QuestID, newQuest);            
             QuestID++;
 
             #endregion // Example Quests
