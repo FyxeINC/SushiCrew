@@ -42,15 +42,15 @@ Mods: {
 			NPC_Ashlyn: {
 				Content: Am chill.
 				NoHome: Where the fuck am I supposed to sleep?
-				LoveSpace: WIDE OPEN SPPACCESSSSSS, ROOM TO MAKE A BIG MISTAKE.
+				LoveSpace: Love the space, I can definitely work with this.
 				FarFromHome: Jesus Christ, google maps has me running in circles!
 				DislikeCrowded: I need some me time.
-				HateCrowded: Why would you put me here, I'm an INTROVERT.
+				HateCrowded: I'm glad to be surrounded by people, but I'm feeling squished.
 				LikeBiome: "I enjoy being in the {BiomeName}."
-				LoveBiome: "{BiomeName} is the happiest place on earth."
+				LoveBiome: "{BiomeName} is great, lots of great space to build."
 				DislikeBiome: "{BiomeName} is not my happy place."
 				HateBiome: "{BiomeName} is where dreams go to die."
-				LikeNPC: "{NPCName} is pretty chill."
+				LikeNPC: "{NPCName} is one of my favorite people."
 				LikeNPC_Princess: "I like {NPCName}."
 				LoveNPC: "I would fuck the shit out of {NPCName}."
 				DislikeNPC: "I get bad vibes from {NPCName}."
@@ -178,10 +178,10 @@ Mods: {
 			NPC_Kelsey: {
 				Content: Today is going alright.
 				NoHome: Can Soph and I crash at your place tonight?
-				LoveSpace: I love the place you set us up in! I hate building/decorating.
+				LoveSpace: I like the amount of space, just not sure what to do with it.
 				FarFromHome: Yo, I think I'm lost. Where's home again?
-				DislikeCrowded: I'm glad to be surrounded by people, but I'm feeling squished.
-				HateCrowded: The number of people here is overwhelming.
+				DislikeCrowded: The number of people here is overwhelming.
+				HateCrowded: It's time for some people to leave, this is too much.
 				LikeBiome: "I like {BiomeName}, it's alright."
 				LoveBiome: "I really love {BiomeName}, it's super cute."
 				DislikeBiome: I don't like living here, I'm going to sell my house and move closer to friends.

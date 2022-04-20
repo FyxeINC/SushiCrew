@@ -20,7 +20,8 @@ namespace SushiCrew.Content.NPCs
                 .SetBiomeAffection<DesertBiome>(AffectionLevel.Dislike) // Example Person dislikes the snow.
 
                 .SetNPCAffection<NPC_Trevor>(AffectionLevel.Love) // Loves living near the dryad.
-                .SetNPCAffection<NPC_Joe>(AffectionLevel.Like) // Likes living near the guide.
+                .SetNPCAffection<NPC_Kelsey>(AffectionLevel.Like) // Likes living near the guide.
+                .SetNPCAffection<NPC_Tyler>(AffectionLevel.Like) // Likes living near the guide.
                 .SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Dislike) // Dislikes living near the merchant.
                 .SetNPCAffection(NPCID.PartyGirl, AffectionLevel.Hate); // Hates living near the demolitionist.
         }
