@@ -13,20 +13,20 @@ namespace SushiCrew.Content.QuestSystem
         public string QuestName { get; private set; } = "UNNAMED QUEST";
         public string QuestDescription { get; private set; } = "QUEST DESCRIPTION";
 
-        public int QuestGiverNPCID { get; private set; } = -1;
-        public int QuestRewardGiverNPCID { get; private set; } = -1;
+        public List<int> QuestGiverNPCIDCollection { get; private set; } = new List<int> ();
+        public List<int> QuestRewardGiverNPCIDCollection { get; private set; } = new List<int>();
 
-        public List<QuestRequirementDataBase> RequirementCollection { get; private set; } = new List<QuestRequirementDataBase>();
+        public List<QuestTaskDataBase> TaskCollection { get; private set; } = new List<QuestTaskDataBase>();
         public List<QuestRewardDataBase> RewardCollection { get; private set; } = new List<QuestRewardDataBase>();
 
-        public QuestData(int questID, string questName, string questDescription, int questGiverNPC, int questRewardGiverNPC, List<QuestRequirementDataBase> requirements, List<QuestRewardDataBase> rewards)
+        public QuestData(int questID, string questName, string questDescription, List<int> questGiverNPCCollection, List<int> questRewardGiverNPCCollection, List<QuestTaskDataBase> tasks, List<QuestRewardDataBase> rewards)
         {
             QuestID = questID;
             QuestName = questName;
             QuestDescription = questDescription;
-            QuestGiverNPCID = questGiverNPC;
-            QuestRewardGiverNPCID = questRewardGiverNPC;
-            RequirementCollection = requirements;
+            QuestGiverNPCIDCollection = questGiverNPCCollection;
+            QuestRewardGiverNPCIDCollection = questRewardGiverNPCCollection;
+            TaskCollection = tasks;
             RewardCollection = rewards;
         }
     }

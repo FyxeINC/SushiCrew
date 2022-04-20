@@ -4,9 +4,9 @@ using Terraria.ModLoader.IO;
 
 namespace SushiCrew.Content.QuestSystem
 {
-    public class QuestRequirementInstance_NPCKills : QuestRequirementInstanceBase
+    public class QuestTaskInstance_NPCKills : QuestTaskInstanceBase
     {
-        public QuestRequirementData_NPCKills CurrentData_NPCKills => CurrentData as QuestRequirementData_NPCKills;
+        public QuestTaskData_NPCKills CurrentData_NPCKills => CurrentData as QuestTaskData_NPCKills;
 
         public override string DisplayString
         {
@@ -55,13 +55,13 @@ namespace SushiCrew.Content.QuestSystem
 
         public override void SaveData(QuestInstance questInstance, TagCompound tag)
         {
-            string slug = questInstance.CurrentData.QuestName + CurrentData_NPCKills.RequirementSlug;
+            string slug = questInstance.CurrentData.QuestID + "." + CurrentData_NPCKills.TaskSlug;
             tag.Add(slug, CurrentKills);
         }
 
         public override void LoadData(QuestInstance questInstance, TagCompound tag)
         {
-            string slug = questInstance.CurrentData.QuestName + CurrentData_NPCKills.RequirementSlug;
+            string slug = questInstance.CurrentData.QuestID + "." + CurrentData_NPCKills.TaskSlug;
             if (tag.ContainsKey(slug))
             {
                 CurrentKills = tag.GetInt(slug);

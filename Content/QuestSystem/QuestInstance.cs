@@ -12,7 +12,7 @@ namespace SushiCrew.Content.QuestSystem
     public class QuestInstance
     {
         public QuestData CurrentData;
-        public List<QuestRequirementInstanceBase> RequirmentInstanceCollection = new List<QuestRequirementInstanceBase>(); 
+        public List<QuestTaskInstanceBase> TaskInstanceCollection = new List<QuestTaskInstanceBase>(); 
         // TODO - not needed?
         //public List<QuestRewardInstanceBase> RewardInstanceCollection = new List<QuestRewardInstanceBase>(); 
 
@@ -22,7 +22,7 @@ namespace SushiCrew.Content.QuestSystem
         {
             get
             {
-                foreach (QuestRequirementInstanceBase i in RequirmentInstanceCollection)
+                foreach (QuestTaskInstanceBase i in TaskInstanceCollection)
                 {
                     if (i.CurrentQuestState == QuestState.inProgress)
                     {
@@ -36,20 +36,20 @@ namespace SushiCrew.Content.QuestSystem
         { 
             get
             {
-                if (CurrentData.RequirementCollection.Count <= 0)
+                if (CurrentData.TaskCollection.Count <= 0)
                 {
-                    // If there are no requirements, then the quest is completed
+                    // If there are no Tasks, then the quest is completed
                     return 1f;
                 }
 
 
                 float toReturn = 0f;
-                foreach (QuestRequirementInstanceBase i in RequirmentInstanceCollection)
+                foreach (QuestTaskInstanceBase i in TaskInstanceCollection)
                 {
                     toReturn += i.EvaluateCompletionPercentage(OwningPlayer);
                 }
 
-                toReturn /= CurrentData.RequirementCollection.Count;
+                toReturn /= CurrentData.TaskCollection.Count;
 
                 return toReturn;
             }
@@ -58,10 +58,10 @@ namespace SushiCrew.Content.QuestSystem
         public QuestInstance(QuestData newData)
         {
             CurrentData = newData;
-            foreach (QuestRequirementDataBase i in CurrentData.RequirementCollection)
+            foreach (QuestTaskDataBase i in CurrentData.TaskCollection)
             {
-                QuestRequirementInstanceBase instance = (QuestRequirementInstanceBase)Activator.CreateInstance(i.RequirementInstanceType);
-                RequirmentInstanceCollection.Add(instance);
+                QuestTaskInstanceBase instance = (QuestTaskInstanceBase)Activator.CreateInstance(i.TaskInstanceType);
+                TaskInstanceCollection.Add(instance);
                 instance.CurrentData = i;
             }
         }

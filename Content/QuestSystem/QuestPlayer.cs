@@ -57,7 +57,7 @@ namespace SushiCrew.Content.QuestSystem
         {
             foreach (KeyValuePair<int, QuestInstance> i in ActiveQuestCollection)
             {
-                foreach (QuestRequirementInstanceBase j in i.Value.RequirmentInstanceCollection)
+                foreach (QuestTaskInstanceBase j in i.Value.TaskInstanceCollection)
                 {
                     j.OnPlayerKilledNPC(npcKilled, this);
                 }
@@ -207,7 +207,7 @@ namespace SushiCrew.Content.QuestSystem
             tag.Add(SaveData_Quests_Active, activeQuests);
             foreach (KeyValuePair<int, QuestInstance> i in ActiveQuestCollection)
             {
-                foreach (var j in i.Value.RequirmentInstanceCollection)
+                foreach (var j in i.Value.TaskInstanceCollection)
                 {
                     j.SaveData(i.Value, tag);
                 }
@@ -234,7 +234,7 @@ namespace SushiCrew.Content.QuestSystem
                     {                        
                         foreach (KeyValuePair<int, QuestInstance> j in ActiveQuestCollection)
                         {
-                            foreach (QuestRequirementInstanceBase k in j.Value.RequirmentInstanceCollection)
+                            foreach (QuestTaskInstanceBase k in j.Value.TaskInstanceCollection)
                             {
                                 k.LoadData(j.Value, tag);
                             }

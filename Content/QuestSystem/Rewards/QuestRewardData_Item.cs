@@ -8,12 +8,16 @@ namespace SushiCrew.Content.QuestSystem
     public class QuestRewardData_Item : QuestRewardDataBase
     {
         public int RewardItemID = ItemID.DirtBlock;
-        public int RewardItemAmount = 1;
 
-        public QuestRewardData_Item(int rewardItemID, int rewardItemAmount)
+        public int RewardItemAmountMin = 1;
+        public int RewardItemAmountMax = 1;
+
+        public QuestRewardData_Item(int rewardItemID, int rewardItemAmountMin, int rewardItemAmountMax)
         {
             RewardItemID = rewardItemID;
-            RewardItemAmount = rewardItemAmount;
+
+            RewardItemAmountMin = rewardItemAmountMin;
+            RewardItemAmountMax = rewardItemAmountMax;
         }
 
         public override string RewardDescriptionShort { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -21,7 +25,7 @@ namespace SushiCrew.Content.QuestSystem
 
         public override void GrantRewards(Player player)
         {            
-            player.QuickSpawnItem(player.GetItemSource_Misc(ItemSourceID.None), RewardItemID, RewardItemAmount);
+            player.QuickSpawnItem(player.GetItemSource_Misc(ItemSourceID.None), RewardItemID, Main.rand.Next(RewardItemAmountMin, RewardItemAmountMax));
         }
     }
 }

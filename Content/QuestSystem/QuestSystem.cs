@@ -36,35 +36,56 @@ namespace SushiCrew.Content.QuestSystem
             QuestData newQuest;
 
 
-            #region 100 - Example Quests
+            #region 100-200 : Example Quests
             QuestID = 100;  // Specify starting point for all quests in this region            
 
-            // Basic Go-To NPC quest
+            // This is a blank quest, used for designers to understand how to create one
             newQuest = new QuestData(
-                QuestID,
-                "Quest 1",
-                "Quest 1 Description",
-                ModContent.NPCType<NPC_Ashlyn>(),
-                ModContent.NPCType<NPC_Austin>(),
-                new List<QuestRequirementDataBase> { },
-                new List<QuestRewardDataBase> { }
+                QuestID,                                    // QuestID, needs to be unique for every quest
+                "Quest 1",                                  // QuestName, does not need to be unique
+                "Quest 1 Description",                      // Quest description
+                new List<int>                               // (Unimplemented) Quest giver, determines who can give it out. "-1" is any sushi NPC
+                {
+                    ModContent.NPCType<NPC_Ashlyn>()
+                },
+                new List<int>                               // (Unimplemented) Quest reciever, determines who can complete it. "-1" is any sushi NPC
+                {
+                    ModContent.NPCType<NPC_Ashlyn>()
+                },
+                new List<QuestTaskDataBase>          // List of Tasks. Kill X NPCs, talk to X, etc.
+                {
+                
+                },
+                new List<QuestRewardDataBase>               // List of rewards. Give X items, etc.
+                {
+                
+                }
                 );
-            QuestDataCollection.TryAdd(QuestID, newQuest);
-            QuestID++;
+            QuestDataCollection.TryAdd(QuestID, newQuest);  // Add the quest to the collection, allows it to be used by the system
+            QuestID++;                                      // Increments the questID for the next quest
 
             // Kill 5 slimes
             newQuest = new QuestData(
-                QuestID,
+                QuestID, 
                 "Kill 5 Slimes",
                 "Kill 5 Slimes from the overworld.",
-                ModContent.NPCType<NPC_Ashlyn>(),
-                ModContent.NPCType<NPC_Ashlyn>(),
-                new List<QuestRequirementDataBase>
+                new List<int> 
                 {
-                    new QuestRequirementData_NPCKills("Kill5Slimes", 5, new List<int> { NPCID.BlueSlime, NPCID.GreenSlime }),
-                    new QuestRequirementData_NPCKills("Kill3Slimes", 3, new List<int> { NPCID.BlueSlime, NPCID.GreenSlime })
+                    ModContent.NPCType<NPC_Ashlyn>()
+                }, 
+                new List<int>
+                {
+                    ModContent.NPCType<NPC_Ashlyn>()
                 },
-                new List<QuestRewardDataBase> { new QuestRewardData_Item(ItemID.DirtBomb, 7) }
+                new List<QuestTaskDataBase>
+                {
+                    new QuestTaskData_NPCKills("Kill5Slimes", 5, new List<int> { NPCID.BlueSlime, NPCID.GreenSlime }),
+                    new QuestTaskData_NPCKills("Kill3Slimes", 3, new List<int> { NPCID.BlueSlime, NPCID.GreenSlime })
+                },
+                new List<QuestRewardDataBase> 
+                { 
+                    new QuestRewardData_Item(ItemID.DirtBomb, 3, 8) 
+                }
                 );
             QuestDataCollection.TryAdd(QuestID, newQuest);
             QuestID++;
@@ -78,20 +99,20 @@ namespace SushiCrew.Content.QuestSystem
         // Was perviously used to setup quest data, however player load was called after, causing issues 
         //}
 
-        public List<int> GetQuestIDsForNPC(int npcIDToGetFor)
-        {
-            List<int> toReturn = new List<int>();
+        //public List<int> GetQuestIDsForNPC(int npcIDToGetFor)
+        //{
+        //    List<int> toReturn = new List<int>();
 
-            foreach (KeyValuePair<int, QuestData> i in QuestDataCollection)
-            {
-                if (i.Value.QuestGiverNPCID == npcIDToGetFor)
-                {
-                    toReturn.Add(i.Key);
-                }
-            }
+        //    foreach (KeyValuePair<int, QuestData> i in QuestDataCollection)
+        //    {
+        //        if (i.Value.QuestGiverNPCIDCollection == npcIDToGetFor)
+        //        {
+        //            toReturn.Add(i.Key);
+        //        }
+        //    }
 
-            return toReturn;
-        }
+        //    return toReturn;
+        //}
 
         public QuestInstance GetInstanceForQuestID(int questID)
         {

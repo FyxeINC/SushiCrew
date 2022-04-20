@@ -4,9 +4,9 @@ using Terraria.ModLoader.IO;
 
 namespace SushiCrew.Content.QuestSystem
 {
-    public abstract class QuestRequirementInstanceBase
+    public abstract class QuestTaskInstanceBase
     {
-        public QuestRequirementDataBase CurrentData;
+        public QuestTaskDataBase CurrentData;
         public QuestState CurrentQuestState = QuestState.inProgress;
 
         public abstract string DisplayString { get; }
