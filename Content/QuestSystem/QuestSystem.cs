@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace SushiCrew.Content.QuestSystem
 {
@@ -10,12 +11,25 @@ namespace SushiCrew.Content.QuestSystem
     {
         public Dictionary<int, QuestData> QuestDataCollection = new Dictionary<int, QuestData>();
 
-        /// <summary>
-        /// After the world is loaded, setup the quest data.
-        /// </summary>
-        public override void OnWorldLoad()
+        //public override void OnModLoad()
+        //{
+        //    base.OnModLoad();
+        //}
+
+        //public override void Load()
+        //{
+        //    base.Load();
+        //}
+
+        //public override void LoadWorldData(TagCompound tag)
+        //{
+        //    base.LoadWorldData(tag);
+        //}
+
+        public override void PostSetupContent()
         {
-            base.OnWorldLoad();
+            base.PostSetupContent();
+
             QuestDataCollection.Clear();
 
             int QuestID = 0;
@@ -35,7 +49,7 @@ namespace SushiCrew.Content.QuestSystem
                 new List<QuestRequirementDataBase> { },
                 new List<QuestRewardDataBase> { }
                 );
-            QuestDataCollection.TryAdd(QuestID, newQuest);            
+            QuestDataCollection.TryAdd(QuestID, newQuest);
             QuestID++;
 
             // Kill 5 slimes
@@ -45,14 +59,24 @@ namespace SushiCrew.Content.QuestSystem
                 "Kill 5 Slimes from the overworld.",
                 ModContent.NPCType<NPC_Ashlyn>(),
                 ModContent.NPCType<NPC_Ashlyn>(),
-                new List<QuestRequirementDataBase> { new QuestRequirementData_NPCKills(1, new List<int> { NPCID.BlueSlime, NPCID.GreenSlime }) },
+                new List<QuestRequirementDataBase>
+                {
+                    new QuestRequirementData_NPCKills("Kill5Slimes", 5, new List<int> { NPCID.BlueSlime, NPCID.GreenSlime }),
+                    new QuestRequirementData_NPCKills("Kill3Slimes", 3, new List<int> { NPCID.BlueSlime, NPCID.GreenSlime })
+                },
                 new List<QuestRewardDataBase> { new QuestRewardData_Item(ItemID.DirtBomb, 7) }
                 );
-            QuestDataCollection.TryAdd(QuestID, newQuest);            
+            QuestDataCollection.TryAdd(QuestID, newQuest);
             QuestID++;
 
             #endregion // Example Quests
         }
+       
+        //public override void OnWorldLoad()
+        //{
+        //    base.OnWorldLoad();
+        // Was perviously used to setup quest data, however player load was called after, causing issues 
+        //}
 
         public List<int> GetQuestIDsForNPC(int npcIDToGetFor)
         {

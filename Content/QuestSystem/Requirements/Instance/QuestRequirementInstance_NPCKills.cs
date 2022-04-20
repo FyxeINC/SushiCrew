@@ -1,5 +1,6 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace SushiCrew.Content.QuestSystem
 {
@@ -45,6 +46,26 @@ namespace SushiCrew.Content.QuestSystem
             }
 
             CurrentKills++;
+
+            if (CurrentKills >= CurrentData_NPCKills.KillsRequired)
+            {
+                CurrentQuestState = QuestState.pendingCompleted;
+            }
+        }
+
+        public override void SaveData(QuestInstance questInstance, TagCompound tag)
+        {
+            string slug = questInstance.CurrentData.QuestName + CurrentData_NPCKills.RequirementSlug;
+            tag.Add(slug, CurrentKills);
+        }
+
+        public override void LoadData(QuestInstance questInstance, TagCompound tag)
+        {
+            string slug = questInstance.CurrentData.QuestName + CurrentData_NPCKills.RequirementSlug;
+            if (tag.ContainsKey(slug))
+            {
+                CurrentKills = tag.GetInt(slug);
+            }
 
             if (CurrentKills >= CurrentData_NPCKills.KillsRequired)
             {

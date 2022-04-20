@@ -1,5 +1,6 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace SushiCrew.Content.QuestSystem
 {
@@ -26,5 +27,9 @@ namespace SushiCrew.Content.QuestSystem
             }
         }
 
+
+        public abstract void SaveData(QuestInstance questInstance, TagCompound tag);
+
+        public abstract void LoadData(QuestInstance questInstance, TagCompound tag);
     }
 }

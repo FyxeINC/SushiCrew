@@ -27,7 +27,7 @@ namespace SushiCrew.Content.QuestSystem
                 displayString += "\n-" + i.Value.CurrentData.QuestName + ": ";
                 foreach (QuestRequirementInstanceBase j in i.Value.RequirmentInstanceCollection)
                 {
-                    displayString += j.DisplayString;
+                    displayString += j.GetDisplayString() + ", ";
                 }
             }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -8,7 +9,10 @@ namespace SushiCrew.Content.QuestSystem
     // ModContent.GetInstance<QuestSystem>();
     
     public class QuestPlayer : ModPlayer
-    {        
+    {
+        const string SaveData_Quests_Completed = "CompletedQuestCollection";
+        const string SaveData_Quests_Active = "ActiveQuestIDCollection";
+
         public Dictionary<int, QuestInstance> ActiveQuestCollection = new Dictionary<int, QuestInstance>();
         public List<int> CompletedQuestCollection = new List<int>();
 
@@ -24,6 +28,12 @@ namespace SushiCrew.Content.QuestSystem
             return toReturn;
         }
 
+        public override void Initialize()
+        {
+            base.Initialize();
+            ActiveQuestCollection = new Dictionary<int, QuestInstance>();
+            CompletedQuestCollection = new List<int>();
+        }
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
@@ -182,16 +192,55 @@ namespace SushiCrew.Content.QuestSystem
             return true;
         }
 
+        public override void OnEnterWorld(Player player)
+        {
+            base.OnEnterWorld(player);
+            Main.NewText("Completed:" + CompletedQuestCollection.Count);
+            Main.NewText("Active:" + ActiveQuestCollection.Count);
+        }
+
         public override void SaveData(TagCompound tag)
         {
-            tag.Add("CompletedQuestCollection", CompletedQuestCollection);
+            tag.Add(SaveData_Quests_Completed, CompletedQuestCollection);
+
+            List<int> activeQuests = ActiveQuestCollection.Keys.ToList();
+            tag.Add(SaveData_Quests_Active, activeQuests);
+            foreach (KeyValuePair<int, QuestInstance> i in ActiveQuestCollection)
+            {
+                foreach (var j in i.Value.RequirmentInstanceCollection)
+                {
+                    j.SaveData(i.Value, tag);
+                }
+            }
         }
         
         public override void LoadData(TagCompound tag)
         {
-            if (tag.ContainsKey("CompletedQuestCollection"))
+            if (tag.ContainsKey(SaveData_Quests_Completed))
             {
-                CompletedQuestCollection = (List<int>)tag.GetList<int>("CompletedQuestCollection");
+                CompletedQuestCollection = (List<int>)tag.GetList<int>(SaveData_Quests_Completed);
+            }
+
+            if (tag.ContainsKey(SaveData_Quests_Active))
+            {
+                List<int> activeQuests = (List<int>)tag.GetList<int>(SaveData_Quests_Active);
+                foreach (int i in activeQuests)
+                {
+                    if (!DoRecieveQuest(i))
+                    {
+                        // TODO - #ERROR
+                    }
+                    else
+                    {                        
+                        foreach (KeyValuePair<int, QuestInstance> j in ActiveQuestCollection)
+                        {
+                            foreach (QuestRequirementInstanceBase k in j.Value.RequirmentInstanceCollection)
+                            {
+                                k.LoadData(j.Value, tag);
+                            }
+                        }
+                    }
+                }
             }
         }
     }
