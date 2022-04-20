@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace SushiCrew.Content.QuestSystem
+namespace SushiCrew.Content.Quest
 {
     public class QuestRequirementData_CompletedQuests : QuestRequirementDataBase
     {

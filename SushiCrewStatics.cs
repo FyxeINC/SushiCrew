@@ -1,4 +1,4 @@
-using SushiCrew.Content.QuestSystem;
+using SushiCrew.Content.Quest;
 using System.Collections.Generic;
 using Terraria.ModLoader;
 

@@ -4,7 +4,7 @@ using System.Linq;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace SushiCrew.Content.QuestSystem
+namespace SushiCrew.Content.Quest
 {
     /// <summary>
     /// Has reference to a QuestData and tracks specific information for quests

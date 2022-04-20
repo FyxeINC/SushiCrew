@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace SushiCrew.Content.QuestSystem
+namespace SushiCrew.Content.Quest
 {
     public abstract class QuestTaskInstanceBase
     {

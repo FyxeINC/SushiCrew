@@ -2,7 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace SushiCrew.Content.QuestSystem
+namespace SushiCrew.Content.Quest
 {
     public class QuestTaskInstance_NPCChat : QuestTaskInstanceBase
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace SushiCrew.Content.QuestSystem
+namespace SushiCrew.Content.Quest
 {
     public class QuestTaskData_AcquireItem : QuestTaskDataBase
     {

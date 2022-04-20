@@ -2,7 +2,7 @@
 using System.Linq;
 using Terraria.ModLoader;
 
-namespace SushiCrew.Content.QuestSystem
+namespace SushiCrew.Content.Quest
 {
     public enum QuestID
     {

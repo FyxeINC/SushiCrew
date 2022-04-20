@@ -2,7 +2,7 @@
 using System.Linq;
 using Terraria.ModLoader;
 
-namespace SushiCrew.Content.QuestSystem
+namespace SushiCrew.Content.Quest
 {
     /// <summary>
     /// Holds immutable information about quests
