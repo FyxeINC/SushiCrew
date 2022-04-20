@@ -25,7 +25,7 @@ namespace SushiCrew.Content.QuestSystem
 
         public override void GrantRewards(Player player)
         {
-            int amountToGive = Main.rand.Next(RewardItemAmountMin, RewardItemAmountMax);
+            int amountToGive = Main.rand.Next(RewardItemAmountMin, RewardItemAmountMax);            
             player.QuickSpawnItem(player.GetItemSource_Misc(ItemSourceID.None), RewardItemID, amountToGive);
         }
     }

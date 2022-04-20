@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SushiCrew.Content.NPCs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -263,6 +264,17 @@ namespace SushiCrew.Content.QuestSystem
             base.OnEnterWorld(player);
             Main.NewText("Completed:" + CompletedQuestCollection.Count);
             Main.NewText("Active:" + ActiveQuestCollection.Count);
+        }
+
+        public void OnChatNPC(NPC npcChatWith)
+        {
+            foreach (KeyValuePair<QuestID, QuestInstance> i in ActiveQuestCollection)
+            {
+                foreach (QuestTaskInstanceBase j in i.Value.TaskInstanceCollection)
+                {
+                    j.OnPlayerChatNPC(this, npcChatWith);
+                }
+            }
         }
 
         public override void SaveData(TagCompound tag)

@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using SushiCrew.Content.NPCs;
+using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -28,6 +29,8 @@ namespace SushiCrew.Content.QuestSystem
         }
 
         public virtual void OnPlayerInventoryChanged(QuestPlayer player) { }
+
+        public virtual void OnPlayerChatNPC(QuestPlayer player, NPC npcChatWith) { }
 
         public abstract void SaveData(QuestInstance questInstance, TagCompound tag);
 

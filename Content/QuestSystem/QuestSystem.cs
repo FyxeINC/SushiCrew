@@ -59,6 +59,7 @@ namespace SushiCrew.Content.QuestSystem
                 {
                     //new QuestTaskData_NPCKills("Kill1Slime", 1, new List<int> { NPCID.BlueSlime, NPCID.GreenSlime })      // Kill X amount of NPCs
                     //new QuestTaskData_AcquireItem("Acquire10Gel", 10, new List<int> { ItemID.Gel })                       // Acquire X amount of items
+                    //new QuestTaskData_NPCChat("TalkToNPC", NPCID.Merchant / ModContent.NPCType<NPC_Ashlyn>())             // Right click on an NPC and talk with them
                 },
                 new List<QuestRewardDataBase>               // List of rewards. Give X items, etc.
                 {
@@ -116,7 +117,9 @@ namespace SushiCrew.Content.QuestSystem
                 },
                 new List<QuestTaskDataBase>
                 {
-                    new QuestTaskData_AcquireItem("Acquire10Gel", 10, new List<int> { ItemID.Gel })
+                    new QuestTaskData_AcquireItem("Acquire10Gel", 10, new List<int> { ItemID.Gel }),
+                    new QuestTaskData_NPCChat("TalkToMerchant", NPCID.Merchant), 
+                    new QuestTaskData_NPCChat("TalkToAsh", ModContent.NPCType<NPC_Ashlyn>())
                 },
                 new List<QuestRewardDataBase>
                 {
