@@ -1,4 +1,5 @@
-﻿using Terraria.ModLoader;
+﻿using Terraria;
+using Terraria.ModLoader;
 
 namespace SushiCrew.Content.QuestSystem
 {
@@ -7,6 +8,6 @@ namespace SushiCrew.Content.QuestSystem
         public abstract string RewardDescriptionShort { get; set; }
         public abstract string RewardDescriptionLong { get; set; }
 
-        public abstract void GrantRewards(QuestPlayer questPlayer);
+        public abstract void GrantRewards(Player player);
     }
 }

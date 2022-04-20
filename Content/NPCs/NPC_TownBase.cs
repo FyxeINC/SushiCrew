@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent;
+using SushiCrew.Content.QuestSystem;
 
 namespace SushiCrew.Content.NPCs
 {
@@ -149,6 +150,7 @@ namespace SushiCrew.Content.NPCs
             {
                 shop = true;
             }
+            //Main.LocalPlayer.GetModPlayer<QuestPlayer>().AttemptRecieveQuest(101);
         }
 
         protected virtual void OnSecondChatButtonClicked(ref bool shop)
@@ -157,6 +159,12 @@ namespace SushiCrew.Content.NPCs
             {
                 shop = true;
             }
+            //QuestPlayer questPlayer = Main.LocalPlayer.GetModPlayer<QuestPlayer>();
+            //if (questPlayer.AttemptCompleteQuest(101))
+            //{
+            //    Main.NewText("Completed!");
+            //}
+
         }
 
         public override bool CanGoToStatue(bool toKingStatue)

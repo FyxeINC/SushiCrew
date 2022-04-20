@@ -8,8 +8,7 @@ namespace SushiCrew.Content.QuestSystem
         public QuestRequirementDataBase CurrentData;
         public QuestState CurrentQuestState = QuestState.inProgress;
 
-        public abstract string RequirementDescriptionShort { get; }
-        public abstract string RequirementDescriptionLong { get; }
+        public abstract string DisplayString { get; }
 
         public abstract float EvaluateCompletionPercentage(QuestPlayer questPlayer);
 

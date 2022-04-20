@@ -114,10 +114,45 @@ namespace SushiCrew.Content.QuestSystem
             QuestInstance newQuestInstance = questSystem.GetInstanceForQuestID(questID);
             ActiveQuestCollection.Add(newQuestInstance.CurrentData.QuestID, newQuestInstance);
 
+            Main.NewText("Quest Added. ID:" + questID);
+
             return true;
         }
         
-        public bool CompleteQuest(int questID)
+        public bool AttemptCompleteQuest(int questID)
+        {
+            if (!CanCompleteQuest(questID))
+            {
+                return false;
+            }
+
+            return DoCompleteQuest(questID);
+        }
+
+        public bool CanCompleteQuest(int questID)
+        {
+            QuestSystem questSystem = ModContent.GetInstance<QuestSystem>();
+            if (questSystem == null)
+            {
+                return false;
+            }
+
+            if (!ActiveQuestCollection.ContainsKey(questID))
+            {
+                return false;
+            }
+
+            QuestInstance questInstance = ActiveQuestCollection[questID];
+            if (questInstance.CurrentQuestState != QuestState.pendingCompleted)
+            {
+                return false;
+            }
+
+
+            return true;
+        }
+
+        public bool DoCompleteQuest(int questID)
         {
             QuestSystem questSystem = ModContent.GetInstance<QuestSystem>();
             if (questSystem == null)
@@ -130,11 +165,11 @@ namespace SushiCrew.Content.QuestSystem
                 return false;
             }
 
-            QuestInstance questInstance = ActiveQuestCollection[questID];
+            QuestInstance questInstance = ActiveQuestCollection[questID];            
 
             foreach (var i in questInstance.CurrentData.RewardCollection)
             {
-                i.GrantRewards(this);
+                i.GrantRewards(this.Player);
             }
 
             ActiveQuestCollection.Remove(questID);

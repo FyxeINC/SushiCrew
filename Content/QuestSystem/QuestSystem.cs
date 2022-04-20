@@ -1,5 +1,6 @@
 ﻿using SushiCrew.Content.NPCs;
 using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -19,32 +20,37 @@ namespace SushiCrew.Content.QuestSystem
             int QuestID = 0;
             QuestData newQuest;
 
+
             #region 100 - Example Quests
-            QuestID = 100;  // Specify starting point for all quests in this region
+            QuestID = 100;  // Specify starting point for all quests in this region            
 
             // Basic Go-To NPC quest
             newQuest = new QuestData(
-                QuestID++,
-                "Quest 0",
-                "Quest 0 Description",
+                QuestID,
+                "Quest 1",
+                "Quest 1 Description",
                 ModContent.NPCType<NPC_Ashlyn>(),
                 ModContent.NPCType<NPC_Austin>(),
                 new List<QuestRequirementDataBase> { },
                 new List<QuestRewardDataBase> { }
                 );
             QuestDataCollection.Add(QuestID, newQuest);
+            Main.NewText("Quest Initialized. ID:" + QuestID);
+            QuestID++;
 
             // Kill 5 slimes
             newQuest = new QuestData(
-                QuestID++,
+                QuestID,
                 "Kill 5 Slimes",
                 "Kill 5 Slimes from the overworld.",
                 ModContent.NPCType<NPC_Ashlyn>(),
                 ModContent.NPCType<NPC_Ashlyn>(),
-                new List<QuestRequirementDataBase> { new QuestRequirementData_NPCKills(5, new List<int> { NPCID.BlueSlime, NPCID.GreenSlime }) },
-                new List<QuestRewardDataBase> { }
+                new List<QuestRequirementDataBase> { new QuestRequirementData_NPCKills(1, new List<int> { NPCID.BlueSlime, NPCID.GreenSlime }) },
+                new List<QuestRewardDataBase> { new QuestRewardData_Item(ItemID.DirtBomb, 7) }
                 );
             QuestDataCollection.Add(QuestID, newQuest);
+            Main.NewText("Quest Initialized. ID:" + QuestID);
+            QuestID++;
 
             #endregion // Example Quests
         }
