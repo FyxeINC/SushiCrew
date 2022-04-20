@@ -1,6 +1,9 @@
+using Terraria;
+using Terraria.ID;
+using Terraria.Utilities;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.GameContent.Personalities;
-using Terraria.ID;
 
 namespace SushiCrew.Content.NPCs
 {
@@ -10,16 +13,18 @@ namespace SushiCrew.Content.NPCs
         {
             base.SetStaticDefaults();
             DisplayName.SetDefault("Fisher");
-            //Main.npcFrameCount[NPC.type] = 23;
+
+            Main.npcFrameCount[NPC.type] = 14;
 
             NPC.Happiness
-                .SetBiomeAffection<OceanBiome>(AffectionLevel.Like)
-                .SetBiomeAffection<ForestBiome>(AffectionLevel.Love)
+                .SetBiomeAffection<ForestBiome>(AffectionLevel.Like)
+                .SetBiomeAffection<HallowBiome>(AffectionLevel.Love)
                 .SetBiomeAffection<SnowBiome>(AffectionLevel.Hate)
                 .SetBiomeAffection<DesertBiome>(AffectionLevel.Dislike)
-                .SetNPCAffection<NPC_Trevor>(AffectionLevel.Love)
-                .SetNPCAffection<NPC_Tyler>(AffectionLevel.Like)
-                .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
+
+                .SetNPCAffection<NPC_Joe>(AffectionLevel.Like)
+                .SetNPCAffection(NPCID.Stylist, AffectionLevel.Love)
+                .SetNPCAffection(NPCID.Angler, AffectionLevel.Love)
                 .SetNPCAffection(NPCID.GoblinTinkerer, AffectionLevel.Hate);
         }
 
@@ -29,7 +34,7 @@ namespace SushiCrew.Content.NPCs
 
             AnimationType = NPCID.Stylist;
 
-            PossibleNames = new string[] { "Emily" };
+            PossibleNames = new string[] { "Emily","Emmy","Stinkyface" };
 
             #region Chats
             //PossibleBasicChats.Add("");
@@ -39,7 +44,7 @@ namespace SushiCrew.Content.NPCs
             //ChatButtonName_2 = "";
 
             NPCGender = Gender.female;
-            //AttackProjectileID = ProjectileID.Glowstick;
+            AttackProjectileID = ProjectileID.FishHook;
         }
     }
 }

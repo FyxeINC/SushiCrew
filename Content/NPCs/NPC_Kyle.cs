@@ -11,14 +11,18 @@ namespace SushiCrew.Content.NPCs
             base.SetStaticDefaults();
             DisplayName.SetDefault("Cadet");
             NPC.Happiness
-                .SetBiomeAffection<OceanBiome>(AffectionLevel.Like)
+                .SetBiomeAffection<JungleBiome>(AffectionLevel.Like)
+                .SetBiomeAffection<MushroomBiome>(AffectionLevel.Love)
                 .SetBiomeAffection<ForestBiome>(AffectionLevel.Love)
-                .SetBiomeAffection<SnowBiome>(AffectionLevel.Hate)
+                .SetBiomeAffection<CrimsonBiome>(AffectionLevel.Hate)
                 .SetBiomeAffection<DesertBiome>(AffectionLevel.Dislike)
-                .SetNPCAffection<NPC_Trevor>(AffectionLevel.Love)
-                .SetNPCAffection<NPC_Tyler>(AffectionLevel.Like)
-                .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
-                .SetNPCAffection(NPCID.GoblinTinkerer, AffectionLevel.Hate);
+
+                .SetNPCAffection(NPCID.Golfer, AffectionLevel.Love)
+                .SetNPCAffection(NPCID.Angler, AffectionLevel.Love)
+                .SetNPCAffection(NPCID.Dryad, AffectionLevel.Love)
+                .SetNPCAffection(NPCID.TownDog, AffectionLevel.Like)
+                .SetNPCAffection(NPCID.TownCat, AffectionLevel.Dislike)
+                .SetNPCAffection(NPCID.TaxCollector, AffectionLevel.Hate);
         }
 
         public override void SetDefaults()
