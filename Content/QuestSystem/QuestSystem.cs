@@ -52,7 +52,11 @@ namespace SushiCrew.Content.QuestSystem
                 {
                     ModContent.NPCType<NPC_Ashlyn>()
                 },
-                new List<QuestTaskDataBase>          // List of Tasks. Kill X NPCs, talk to X, etc.
+                new List<QuestRequirementDataBase>          // Requirements for this quest to be available
+                {
+
+                },
+                new List<QuestTaskDataBase>                 // List of Tasks. Kill X NPCs, talk to X, etc.
                 {
                 
                 },
@@ -76,6 +80,10 @@ namespace SushiCrew.Content.QuestSystem
                 new List<int>
                 {
                     ModContent.NPCType<NPC_Ashlyn>()
+                },
+                new List<QuestRequirementDataBase>
+                {
+
                 },
                 new List<QuestTaskDataBase>
                 {
