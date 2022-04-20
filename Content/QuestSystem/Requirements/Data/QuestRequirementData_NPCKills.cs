@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -11,5 +12,12 @@ namespace SushiCrew.Content.QuestSystem
         public override string RequirementDescriptionLong { get => ""; }
 
         public int KillsRequired = 1;
+        public List<int> NPCIDs = new List<int>();
+
+        public QuestRequirementData_NPCKills(int killsRequired, List<int> newNPCIDs)
+        {
+            KillsRequired = killsRequired;
+            NPCIDs = newNPCIDs;
+        }
     }
 }

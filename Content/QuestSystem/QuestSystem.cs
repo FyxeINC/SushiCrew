@@ -1,5 +1,6 @@
 ﻿using SushiCrew.Content.NPCs;
 using System.Collections.Generic;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace SushiCrew.Content.QuestSystem
@@ -21,14 +22,26 @@ namespace SushiCrew.Content.QuestSystem
             #region 100 - Example Quests
             QuestID = 100;  // Specify starting point for all quests in this region
 
-            // Basic first quest
+            // Basic Go-To NPC quest
             newQuest = new QuestData(
                 QuestID++,
                 "Quest 0",
                 "Quest 0 Description",
                 ModContent.NPCType<NPC_Ashlyn>(),
-                ModContent.NPCType<NPC_Ashlyn>(),
+                ModContent.NPCType<NPC_Austin>(),
                 new List<QuestRequirementDataBase> { },
+                new List<QuestRewardDataBase> { }
+                );
+            QuestDataCollection.Add(QuestID, newQuest);
+
+            // Kill 5 slimes
+            newQuest = new QuestData(
+                QuestID++,
+                "Kill 5 Slimes",
+                "Kill 5 Slimes from the overworld.",
+                ModContent.NPCType<NPC_Ashlyn>(),
+                ModContent.NPCType<NPC_Ashlyn>(),
+                new List<QuestRequirementDataBase> { new QuestRequirementData_NPCKills(5, new List<int> { NPCID.BlueSlime, NPCID.GreenSlime }) },
                 new List<QuestRewardDataBase> { }
                 );
             QuestDataCollection.Add(QuestID, newQuest);

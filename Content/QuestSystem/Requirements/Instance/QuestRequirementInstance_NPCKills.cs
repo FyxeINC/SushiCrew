@@ -10,16 +10,33 @@ namespace SushiCrew.Content.QuestSystem
         public override string RequirementDescriptionShort { get => ""; }
         public override string RequirementDescriptionLong { get => ""; }
 
-        public int CurrentKills = 0;
+        public int CurrentKills = 0;        
 
         public override float EvaluateCompletionPercentage(QuestPlayer questPlayer)
         {
             return ((float)CurrentKills) / ((float)CurrentKillData.KillsRequired);
         }
 
-        public override QuestState EvaluateQuestState(QuestPlayer questPlayer)
+        public override void OnPlayerKilledNPC(NPC npcKilled, QuestPlayer questPlayer)
         {
-            throw new System.NotImplementedException();
+            base.OnPlayerKilledNPC(npcKilled, questPlayer);
+
+            if (CurrentQuestState != QuestState.inProgress)
+            {
+                return;
+            }
+
+            if (CurrentKillData.NPCIDs.Count > 0 && !CurrentKillData.NPCIDs.Contains(npcKilled.type))
+            {
+                return;
+            }
+
+            CurrentKills++;
+
+            if (CurrentKills >= CurrentKillData.KillsRequired)
+            {
+                CurrentQuestState = QuestState.pendingCompleted;
+            }
         }
     }
 }

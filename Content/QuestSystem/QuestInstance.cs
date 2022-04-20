@@ -25,7 +25,7 @@ namespace SushiCrew.Content.QuestSystem
             {
                 foreach (QuestRequirementInstanceBase i in RequirmentInstanceCollection)
                 {
-                    if (i.EvaluateQuestState(OwningPlayer) == QuestState.inProgress)
+                    if (i.CurrentQuestState == QuestState.inProgress)
                     {
                         return QuestState.inProgress;
                     }
@@ -61,7 +61,9 @@ namespace SushiCrew.Content.QuestSystem
             CurrentData = newData;
             foreach (QuestRequirementDataBase i in CurrentData.RequirementCollection)
             {
-                RequirmentInstanceCollection.Add((QuestRequirementInstanceBase)Activator.CreateInstance(i.RequirementInstanceType));
+                QuestRequirementInstanceBase instance = (QuestRequirementInstanceBase)Activator.CreateInstance(i.RequirementInstanceType);
+                RequirmentInstanceCollection.Add(instance);
+                instance.CurrentData = i;
             }
         }
 
