@@ -12,7 +12,7 @@ namespace SushiCrew.Content.QuestSystem
         {
             get
             {
-                return "Talk to " + CurrentData_NPCChat.NPCID;
+                return "Talk to " + Lang.GetNPCNameValue(CurrentData_NPCChat.NPCID);
             }
         }
 

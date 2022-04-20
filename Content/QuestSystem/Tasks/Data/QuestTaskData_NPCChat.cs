@@ -9,8 +9,8 @@ namespace SushiCrew.Content.QuestSystem
     {
         public override Type TaskInstanceType => typeof(QuestTaskInstance_NPCChat);
         
-        public override string TaskDescriptionShort { get => "Talk to " + NPCID; }
-        public override string TaskDescriptionLong { get => "Talk to " + NPCID; }
+        public override string TaskDescriptionShort { get => "Talk to " + Lang.GetNPCNameValue(NPCID); }
+        public override string TaskDescriptionLong { get => "Talk to " + Lang.GetNPCNameValue(NPCID); }
 
         public int NPCID;
 

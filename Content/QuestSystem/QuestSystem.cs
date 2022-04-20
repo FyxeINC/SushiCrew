@@ -129,6 +129,35 @@ namespace SushiCrew.Content.QuestSystem
                 );
             QuestDataCollection.TryAdd(newQuest.QuestID, newQuest);
 
+            // Chat
+            newQuest = new QuestData(
+                QuestID.Example_03_Chat,
+                "Chat with NPCs",
+                "Chat with the Merchant and Ashlyn",
+                new List<int>
+                {
+                    ModContent.NPCType<NPC_Ashlyn>()
+                },
+                new List<int>
+                {
+                    ModContent.NPCType<NPC_Ashlyn>()
+                },
+                new List<QuestRequirementDataBase>
+                {
+
+                },
+                new List<QuestTaskDataBase>
+                {
+                    new QuestTaskData_NPCChat("TalkToMerchant", NPCID.Merchant),
+                    new QuestTaskData_NPCChat("TalkToAsh", ModContent.NPCType<NPC_Ashlyn>())
+                },
+                new List<QuestRewardDataBase>
+                {
+                    new QuestRewardData_GiveItem(ItemID.DirtBomb, 3, 8)
+                }
+                );
+            QuestDataCollection.TryAdd(newQuest.QuestID, newQuest);
+
             #endregion // Example Quests
         }
 

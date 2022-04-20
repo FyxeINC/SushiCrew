@@ -9,6 +9,7 @@ namespace SushiCrew.Content.QuestSystem
         None,
         Example_00_Blank,
         Example_01_Kill,
-        Example_02_Acquire
+        Example_02_Acquire,
+        Example_03_Chat
     }
 }
