@@ -72,8 +72,8 @@ namespace SushiCrew.Content.QuestSystem
             // Kill 5 slimes
             newQuest = new QuestData(
                 QuestID.Example_01_Kill, 
-                "Kill 5 Slimes",
-                "Kill 5 Slimes from the overworld.",
+                "Kill 20 Slimes",
+                "Kill 20 Slimes from the overworld.",
                 new List<int> 
                 {
                     ModContent.NPCType<NPC_Ashlyn>()
@@ -84,12 +84,11 @@ namespace SushiCrew.Content.QuestSystem
                 },
                 new List<QuestRequirementDataBase>
                 {
-                    new QuestRequirementData_NotCompletedQuests(new List<QuestID> { QuestID.Example_01_Kill })  // Used to not let this quest be repeatable
+                    //new QuestRequirementData_NotCompletedQuests(new List<QuestID> { QuestID.Example_01_Kill })  // Used to not let this quest be repeatable
                 },
                 new List<QuestTaskDataBase>
                 {
-                    new QuestTaskData_NPCKills("Kill5Slimes", 5, new List<int> { NPCID.BlueSlime, NPCID.GreenSlime }),
-                    new QuestTaskData_NPCKills("Kill3Slimes", 3, new List<int> { NPCID.BlueSlime, NPCID.GreenSlime })
+                    new QuestTaskData_NPCKills("Kill20Slimes", 20, new List<int> { NPCID.BlueSlime, NPCID.GreenSlime }),
                 },
                 new List<QuestRewardDataBase> 
                 { 

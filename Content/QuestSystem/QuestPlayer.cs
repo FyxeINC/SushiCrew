@@ -95,7 +95,8 @@ namespace SushiCrew.Content.QuestSystem
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
             base.OnHitNPC(item, target, damage, knockback, crit);
-            if (target.life - damage <= 0)
+            //if (target.life - damage <= 0)
+            if (target.life <= 0)
             {
                 OnNPCKilled(target);
             }
@@ -104,7 +105,8 @@ namespace SushiCrew.Content.QuestSystem
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
             base.OnHitNPCWithProj(proj, target, damage, knockback, crit);
-            if (target.life - damage <= 0)
+            if (target.life <= 0)
+            //if (target.life - damage <= 0)
             {
                 OnNPCKilled(target);
             }
