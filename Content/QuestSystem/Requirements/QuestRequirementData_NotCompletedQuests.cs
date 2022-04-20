@@ -6,9 +6,9 @@ namespace SushiCrew.Content.QuestSystem
 {
     public class QuestRequirementData_NotCompletedQuests : QuestRequirementDataBase
     {
-        List<int> QuestIDsToCheckCollection = new List<int>();
+        List<QuestID> QuestIDsToCheckCollection = new List<QuestID>();
 
-        public QuestRequirementData_NotCompletedQuests(List<int> questIDs)
+        public QuestRequirementData_NotCompletedQuests(List<QuestID> questIDs)
         {
             QuestIDsToCheckCollection = questIDs;
         }

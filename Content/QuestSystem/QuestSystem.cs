@@ -9,7 +9,7 @@ namespace SushiCrew.Content.QuestSystem
 {
     public class QuestSystem : ModSystem
     {
-        public Dictionary<int, QuestData> QuestDataCollection = new Dictionary<int, QuestData>();
+        public Dictionary<QuestID, QuestData> QuestDataCollection = new Dictionary<QuestID, QuestData>();
 
         //public override void OnModLoad()
         //{
@@ -32,16 +32,14 @@ namespace SushiCrew.Content.QuestSystem
 
             QuestDataCollection.Clear();
 
-            int QuestID = 0;
             QuestData newQuest;
 
 
-            #region 100-200 : Example Quests
-            QuestID = 100;  // Specify starting point for all quests in this region            
+            #region Example Quests       
 
             // This is a blank quest, used for designers to understand how to create one
             newQuest = new QuestData(
-                QuestID,                                    // QuestID, needs to be unique for every quest
+                QuestID.Example_Blank,                      // QuestID, needs to be unique for every quest. Found in QuestID.cs
                 "Quest 1",                                  // QuestName, does not need to be unique
                 "Quest 1 Description",                      // Quest description
                 new List<int>                               // (Unimplemented) Quest giver, determines who can give it out. "-1" is any sushi NPC
@@ -65,12 +63,11 @@ namespace SushiCrew.Content.QuestSystem
                 
                 }
                 );  // Quest data end
-            QuestDataCollection.TryAdd(QuestID, newQuest);  // Add the quest to the collection, allows it to be used by the system
-            QuestID++;                                      // Increments the questID for the next quest
+            QuestDataCollection.TryAdd(newQuest.QuestID, newQuest);  // Add the quest to the collection, allows it to be used by the system            
 
             // Kill 5 slimes
             newQuest = new QuestData(
-                QuestID, 
+                QuestID.Example_Kill, 
                 "Kill 5 Slimes",
                 "Kill 5 Slimes from the overworld.",
                 new List<int> 
@@ -83,7 +80,7 @@ namespace SushiCrew.Content.QuestSystem
                 },
                 new List<QuestRequirementDataBase>
                 {
-                    new QuestRequirementData_NotCompletedQuests(new List<int> { QuestID })  // Used to not let this quest be repeatable
+                    new QuestRequirementData_NotCompletedQuests(new List<QuestID> { QuestID.Example_Kill })  // Used to not let this quest be repeatable
                 },
                 new List<QuestTaskDataBase>
                 {
@@ -95,8 +92,35 @@ namespace SushiCrew.Content.QuestSystem
                     new QuestRewardData_Item(ItemID.DirtBomb, 3, 8) 
                 }
                 );
-            QuestDataCollection.TryAdd(QuestID, newQuest);
-            QuestID++;
+            QuestDataCollection.TryAdd(newQuest.QuestID, newQuest);
+
+            // Acquire 10 gel
+            newQuest = new QuestData(
+                QuestID.Example_Acquire,
+                "Acquire 10 gel",
+                "Acquire 10 blue gel.",
+                new List<int>
+                {
+                    ModContent.NPCType<NPC_Ashlyn>()
+                },
+                new List<int>
+                {
+                    ModContent.NPCType<NPC_Ashlyn>()
+                },
+                new List<QuestRequirementDataBase>
+                {
+                    
+                },
+                new List<QuestTaskDataBase>
+                {
+                    new QuestTaskData_AcquireItem("Acquire10Gel", 10, new List<int> { ItemID.Gel })
+                },
+                new List<QuestRewardDataBase>
+                {
+                    new QuestRewardData_Item(ItemID.DirtBomb, 3, 8)
+                }
+                );
+            QuestDataCollection.TryAdd(newQuest.QuestID, newQuest);
 
             #endregion // Example Quests
         }
@@ -122,7 +146,7 @@ namespace SushiCrew.Content.QuestSystem
         //    return toReturn;
         //}
 
-        public QuestInstance GetInstanceForQuestID(int questID)
+        public QuestInstance GetInstanceForQuestID(QuestID questID)
         {
             if (!QuestDataCollection.ContainsKey(questID))
             {
@@ -133,7 +157,7 @@ namespace SushiCrew.Content.QuestSystem
             return newQuestInstance;
         }
 
-        public bool DoesPlayerMeetRequirementsForQuest(QuestPlayer player, int questID)
+        public bool DoesPlayerMeetRequirementsForQuest(QuestPlayer player, QuestID questID)
         {
             if (!QuestDataCollection.ContainsKey(questID))
             {

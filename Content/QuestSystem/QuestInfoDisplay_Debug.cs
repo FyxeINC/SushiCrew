@@ -22,12 +22,19 @@ namespace SushiCrew.Content.QuestSystem
             QuestPlayer questPlayer = Main.LocalPlayer.GetModPlayer<QuestPlayer>();
             string displayString = "Quest Info: ";
 
-            foreach (KeyValuePair<int, QuestInstance> i in questPlayer.ActiveQuestCollection)
+            foreach (KeyValuePair<QuestID, QuestInstance> i in questPlayer.ActiveQuestCollection)
             {
                 displayString += "\n-" + i.Value.CurrentData.QuestName + ": ";
-                foreach (QuestTaskInstanceBase j in i.Value.TaskInstanceCollection)
+                if (i.Value.CurrentQuestState == QuestState.pendingCompleted)
                 {
-                    displayString += j.GetDisplayString() + ", ";
+                    displayString += "Completed!";
+                }
+                else
+                {
+                    foreach (QuestTaskInstanceBase j in i.Value.TaskInstanceCollection)
+                    {
+                        displayString += j.GetDisplayString() + ", ";
+                    }
                 }
             }
 

@@ -6,16 +6,16 @@ namespace SushiCrew.Content.QuestSystem
 {
     public class QuestRequirementData_CompletedQuests : QuestRequirementDataBase
     {
-        List<int> QuestIDsToCheckCollection = new List<int>();
+        List<QuestID> QuestIDsToCheckCollection = new List<QuestID>();
 
-        public QuestRequirementData_CompletedQuests(List<int> questIDs)
+        public QuestRequirementData_CompletedQuests(List<QuestID> questIDs)
         {
             QuestIDsToCheckCollection = questIDs;
         }
 
         public override bool DoesPlayerMeetRequirements(QuestPlayer player)
         {
-            foreach (var i in QuestIDsToCheckCollection)
+            foreach (QuestID i in QuestIDsToCheckCollection)
             {
                 if (!player.CompletedQuestCollection.Contains(i))
                 {

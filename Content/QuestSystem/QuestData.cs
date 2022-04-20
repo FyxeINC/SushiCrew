@@ -9,7 +9,7 @@ namespace SushiCrew.Content.QuestSystem
     /// </summary>
     public class QuestData
     {
-        public int QuestID { get; private set; } = -1;
+        public QuestID QuestID { get; private set; } = QuestID.None;
         public string QuestName { get; private set; } = "UNNAMED QUEST";
         public string QuestDescription { get; private set; } = "QUEST DESCRIPTION";
 
@@ -20,7 +20,7 @@ namespace SushiCrew.Content.QuestSystem
         public List<QuestTaskDataBase> TaskCollection { get; private set; } = new List<QuestTaskDataBase>();
         public List<QuestRewardDataBase> RewardCollection { get; private set; } = new List<QuestRewardDataBase>();
 
-        public QuestData(int questID, string questName, string questDescription, List<int> questGiverNPCCollection, List<int> questRewardGiverNPCCollection, List<QuestRequirementDataBase> requirements, List<QuestTaskDataBase> tasks, List<QuestRewardDataBase> rewards)
+        public QuestData(QuestID questID, string questName, string questDescription, List<int> questGiverNPCCollection, List<int> questRewardGiverNPCCollection, List<QuestRequirementDataBase> requirements, List<QuestTaskDataBase> tasks, List<QuestRewardDataBase> rewards)
         {
             QuestID = questID;
             QuestName = questName;

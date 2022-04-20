@@ -40,7 +40,7 @@ namespace SushiCrew.Content.QuestSystem
                 return;
             }
 
-            if (CurrentData_NPCKills.NPCIDs.Count > 0 && !CurrentData_NPCKills.NPCIDs.Contains(npcKilled.type))
+            if (CurrentData_NPCKills.NPCIDCollection.Count > 0 && !CurrentData_NPCKills.NPCIDCollection.Contains(npcKilled.type))
             {
                 return;
             }

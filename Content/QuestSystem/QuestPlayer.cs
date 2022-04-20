@@ -13,26 +13,15 @@ namespace SushiCrew.Content.QuestSystem
         const string SaveData_Quests_Completed = "CompletedQuestCollection";
         const string SaveData_Quests_Active = "ActiveQuestIDCollection";
 
-        public Dictionary<int, QuestInstance> ActiveQuestCollection = new Dictionary<int, QuestInstance>();
-        public List<int> CompletedQuestCollection = new List<int>();
+        public Dictionary<QuestID, QuestInstance> ActiveQuestCollection = new Dictionary<QuestID, QuestInstance>();
+        public List<QuestID> CompletedQuestCollection = new List<QuestID>();
 
-        public int[] GetActiveQuestIDs()
-        {
-            int[] toReturn = new int[ActiveQuestCollection.Count];
-            int index = 0;
-            foreach (var i in ActiveQuestCollection)
-            {
-                toReturn[index] = i.Key;
-                index++;
-            }
-            return toReturn;
-        }
 
         public override void Initialize()
         {
             base.Initialize();
-            ActiveQuestCollection = new Dictionary<int, QuestInstance>();
-            CompletedQuestCollection = new List<int>();
+            ActiveQuestCollection = new Dictionary<QuestID, QuestInstance>();
+            CompletedQuestCollection = new List<QuestID>();
         }
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
@@ -55,7 +44,7 @@ namespace SushiCrew.Content.QuestSystem
 
         void OnNPCKilled(NPC npcKilled)
         {
-            foreach (KeyValuePair<int, QuestInstance> i in ActiveQuestCollection)
+            foreach (KeyValuePair<QuestID, QuestInstance> i in ActiveQuestCollection)
             {
                 foreach (QuestTaskInstanceBase j in i.Value.TaskInstanceCollection)
                 {
@@ -69,7 +58,7 @@ namespace SushiCrew.Content.QuestSystem
 
         //}       
 
-        public QuestState GetQuestState(int questID)
+        public QuestState GetQuestState(QuestID questID)
         {
             if (CompletedQuestCollection.Contains(questID))
             {
@@ -84,7 +73,7 @@ namespace SushiCrew.Content.QuestSystem
             return QuestState.notAcquired;
         }
 
-        public bool AttemptRecieveQuest(int questID)
+        public bool AttemptRecieveQuest(QuestID questID)
         {
             if (!CanRecieveQuest(questID))
             {
@@ -94,7 +83,7 @@ namespace SushiCrew.Content.QuestSystem
             return DoRecieveQuest(questID);
         }
 
-        public bool CanRecieveQuest(int questID)
+        public bool CanRecieveQuest(QuestID questID)
         {
             QuestSystem questSystem = ModContent.GetInstance<QuestSystem>();
             if (questSystem == null)
@@ -115,7 +104,7 @@ namespace SushiCrew.Content.QuestSystem
             return true;
         }
 
-        bool DoRecieveQuest(int questID)
+        bool DoRecieveQuest(QuestID questID)
         {
             QuestSystem questSystem = ModContent.GetInstance<QuestSystem>();
             if (questSystem == null)
@@ -131,7 +120,7 @@ namespace SushiCrew.Content.QuestSystem
             return true;
         }
         
-        public bool AttemptCompleteQuest(int questID)
+        public bool AttemptCompleteQuest(QuestID questID)
         {
             if (!CanCompleteQuest(questID))
             {
@@ -141,7 +130,7 @@ namespace SushiCrew.Content.QuestSystem
             return DoCompleteQuest(questID);
         }
 
-        public bool CanCompleteQuest(int questID)
+        public bool CanCompleteQuest(QuestID questID)
         {
             QuestSystem questSystem = ModContent.GetInstance<QuestSystem>();
             if (questSystem == null)
@@ -164,7 +153,7 @@ namespace SushiCrew.Content.QuestSystem
             return true;
         }
 
-        public bool DoCompleteQuest(int questID)
+        public bool DoCompleteQuest(QuestID questID)
         {
             QuestSystem questSystem = ModContent.GetInstance<QuestSystem>();
             if (questSystem == null)
@@ -202,11 +191,11 @@ namespace SushiCrew.Content.QuestSystem
 
         public override void SaveData(TagCompound tag)
         {
-            tag.Add(SaveData_Quests_Completed, CompletedQuestCollection);
+            tag.Add(SaveData_Quests_Completed, CompletedQuestCollection.ToInt());
 
-            List<int> activeQuests = ActiveQuestCollection.Keys.ToList();
-            tag.Add(SaveData_Quests_Active, activeQuests);
-            foreach (KeyValuePair<int, QuestInstance> i in ActiveQuestCollection)
+            List<QuestID> activeQuests = ActiveQuestCollection.Keys.ToList();
+            tag.Set(SaveData_Quests_Active, activeQuests.ToInt());
+            foreach (KeyValuePair<QuestID, QuestInstance> i in ActiveQuestCollection)
             {
                 foreach (var j in i.Value.TaskInstanceCollection)
                 {
@@ -219,13 +208,13 @@ namespace SushiCrew.Content.QuestSystem
         {
             if (tag.ContainsKey(SaveData_Quests_Completed))
             {
-                CompletedQuestCollection = (List<int>)tag.GetList<int>(SaveData_Quests_Completed);
+                CompletedQuestCollection = ((List<int>)tag.GetList<int>(SaveData_Quests_Completed)).ToQuestID();
             }
 
             if (tag.ContainsKey(SaveData_Quests_Active))
             {
-                List<int> activeQuests = (List<int>)tag.GetList<int>(SaveData_Quests_Active);
-                foreach (int i in activeQuests)
+                List<QuestID> activeQuests = ((List<int>)tag.GetList<int>(SaveData_Quests_Active)).ToQuestID();
+                foreach (QuestID i in activeQuests)
                 {
                     if (!DoRecieveQuest(i))
                     {
@@ -233,7 +222,7 @@ namespace SushiCrew.Content.QuestSystem
                     }
                     else
                     {                        
-                        foreach (KeyValuePair<int, QuestInstance> j in ActiveQuestCollection)
+                        foreach (KeyValuePair<QuestID, QuestInstance> j in ActiveQuestCollection)
                         {
                             foreach (QuestTaskInstanceBase k in j.Value.TaskInstanceCollection)
                             {

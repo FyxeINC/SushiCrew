@@ -10,11 +10,11 @@ namespace SushiCrew.Content.QuestSystem
         public override Type TaskInstanceType => typeof(QuestTaskInstance_NPCKills);
         
         public override string TaskDescriptionShort { get => "Kill " + KillsRequired; }
-        public override string TaskDescriptionLong { get => "Kill " + KillsRequired + " NPCs"; }
+        public override string TaskDescriptionLong { get => "Kill " + KillsRequired + " NPC"; }
 
         public int KillsRequired = 1;
         public string GeneralizedNPCName = "NPCs";
-        public List<int> NPCIDs = new List<int>();
+        public List<int> NPCIDCollection = new List<int>();
 
         /// <summary>
         /// 
@@ -26,7 +26,7 @@ namespace SushiCrew.Content.QuestSystem
         {
             TaskSlug = taskSlug;
             KillsRequired = killsRequired;
-            NPCIDs = newNPCIDs;
+            NPCIDCollection = newNPCIDs;
         }
     }
 }
