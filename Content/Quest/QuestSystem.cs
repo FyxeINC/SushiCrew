@@ -42,11 +42,11 @@ namespace SushiCrew.Content.Quest
                 QuestID.Example_00_Blank,                      // QuestID, needs to be unique for every quest. Found in QuestID.cs
                 "Quest 1",                                  // QuestName, does not need to be unique
                 "Quest 1 Description",                      // Quest description
-                new List<int>                               // (Unimplemented) Quest giver, determines who can give it out. An empty list means any sushi NPC
+                new List<int>                               // (Unimplemented) Quest giver, determines who can give it out (Must be sushi NPC). An empty list means any sushi NPC
                 {
                     ModContent.NPCType<NPC_Ashlyn>()
                 },
-                new List<int>                               // (Unimplemented) Quest reciever, determines who can complete it. An empty list means any sushi NPC
+                new List<int>                               // (Unimplemented) Quest reciever, determines who can complete it (Must be sushi NPC). An empty list means any sushi NPC
                 {
                     ModContent.NPCType<NPC_Ashlyn>()
                 },
@@ -217,7 +217,7 @@ namespace SushiCrew.Content.Quest
             List<QuestID> toReturn = new List<QuestID> ();
             foreach (KeyValuePair<QuestID, QuestData> i in QuestDataCollection)
             {
-                if (i.Value.QuestGiverNPCIDCollection.Contains(npc.type))
+                if (i.Value.QuestGiverNPCIDCollection.Contains(npc.type) || i.Value.QuestGiverNPCIDCollection.Count <= 0)
                 {
                     toReturn.Add(i.Key);
                 }
@@ -230,7 +230,7 @@ namespace SushiCrew.Content.Quest
             List<QuestID> toReturn = new List<QuestID>();
             foreach (KeyValuePair<QuestID, QuestData> i in QuestDataCollection)
             {
-                if (i.Value.QuestRewardGiverNPCIDCollection.Contains(npc.type))
+                if (i.Value.QuestRewardGiverNPCIDCollection.Contains(npc.type) || i.Value.QuestGiverNPCIDCollection.Count <= 0)
                 {
                     toReturn.Add(i.Key);
                 }
