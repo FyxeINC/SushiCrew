@@ -135,11 +135,11 @@ namespace SushiCrew.Content.Quest
                 "Chat with the Merchant and Ashlyn",
                 new List<int>
                 {
-                    ModContent.NPCType<NPC_Ashlyn>()
+                    ModContent.NPCType<NPC_Austin>()
                 },
                 new List<int>
                 {
-                    ModContent.NPCType<NPC_Ashlyn>()
+                    ModContent.NPCType<NPC_Austin>()
                 },
                 new List<QuestRequirementDataBase>
                 {
@@ -210,6 +210,32 @@ namespace SushiCrew.Content.Quest
             }
 
             return true;
+        }
+
+        public List<QuestID> GetQuestIDsGiveForNPC(NPC npc)
+        {
+            List<QuestID> toReturn = new List<QuestID> ();
+            foreach (KeyValuePair<QuestID, QuestData> i in QuestDataCollection)
+            {
+                if (i.Value.QuestGiverNPCIDCollection.Contains(npc.type))
+                {
+                    toReturn.Add(i.Key);
+                }
+            }
+            return toReturn;
+        }
+
+        public List<QuestID> GetQuestIDsRecieveForNPC(NPC npc)
+        {
+            List<QuestID> toReturn = new List<QuestID>();
+            foreach (KeyValuePair<QuestID, QuestData> i in QuestDataCollection)
+            {
+                if (i.Value.QuestRewardGiverNPCIDCollection.Contains(npc.type))
+                {
+                    toReturn.Add(i.Key);
+                }
+            }
+            return toReturn;
         }
     }
 }

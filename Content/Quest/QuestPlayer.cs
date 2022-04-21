@@ -20,6 +20,19 @@ namespace SushiCrew.Content.Quest
 
         internal static Item[] previousInventoryItems;
 
+        public List<QuestID> GetPendingCompletedCollection()
+        {
+            List<QuestID> toReturn = new List<QuestID>();
+            foreach (KeyValuePair<QuestID, QuestInstance> i in ActiveQuestCollection)
+            {
+                if (i.Value.CurrentQuestState == QuestState.pendingCompleted)
+                {
+                    toReturn.Add(i.Key);
+                }
+            }
+            return toReturn;
+        }
+
         public override void Initialize()
         {
             base.Initialize();

@@ -7,10 +7,13 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent;
-using SushiCrew.Content.QuestSystem;
+using SushiCrew.Content.Quest;
 
 namespace SushiCrew.Content.NPCs
 {
+    /// <summary>
+    /// Used for NPC statue teleport.
+    /// </summary>
     public enum Gender
     {
         male,
@@ -24,12 +27,21 @@ namespace SushiCrew.Content.NPCs
         protected string[] PossibleNames;
         protected WeightedRandom<string> PossibleBasicChats;
 
+        /// <summary>
+        /// Normally, shop
+        /// </summary>
         protected string ChatButtonName_1;
+        /// <summary>
+        /// Used by the quest system
+        /// </summary>
         protected string ChatButtonName_2;
 
         protected bool ChatButton1IsShop;
         protected bool ChatButton2IsShop;
 
+        /// <summary>
+        /// Used for NPC statue teleport.
+        /// </summary>
         protected Gender NPCGender;
 
         protected int[] BasicShopItems;
@@ -51,6 +63,12 @@ namespace SushiCrew.Content.NPCs
         protected int AttackMeleeItemSize;  
         protected float AttackMeleeItemScale;  
         protected Vector2 AttackMeleeItemOffset;
+
+        QuestSystem CurrentQuestSystem;
+
+        bool didSetupQuests = false;
+        public List<QuestID> QuestsCanGive = new List<QuestID> ();
+        public List<QuestID> QuestsCanRecieve = new List<QuestID> ();
 
         public override void SetStaticDefaults()
         {
@@ -85,8 +103,8 @@ namespace SushiCrew.Content.NPCs
             PossibleNames = new string[] { "SETNAMES" };
             PossibleBasicChats = new WeightedRandom<string>();
 
-            ChatButtonName_1 = "Button 1";
-            ChatButtonName_2 = "Button 2";
+            ChatButtonName_1 = "";
+            ChatButtonName_2 = "";
 
             ChatButton1IsShop = false;
             ChatButton2IsShop = false;
@@ -106,7 +124,8 @@ namespace SushiCrew.Content.NPCs
             AttackMeleeItemScale = 1f;
             AttackMeleeItemOffset = Vector2.Zero;
 
-        }
+            
+        }        
 
         public override string TownNPCName()
         {
@@ -126,10 +145,62 @@ namespace SushiCrew.Content.NPCs
             }
         }
 
+        void CheckSetupQuests()
+        {
+            if (!didSetupQuests)
+            {
+                CurrentQuestSystem = ModContent.GetInstance<QuestSystem>();
+                QuestsCanGive = CurrentQuestSystem.GetQuestIDsGiveForNPC(this.NPC);
+                QuestsCanRecieve = CurrentQuestSystem.GetQuestIDsRecieveForNPC(this.NPC);
+                didSetupQuests = true;
+            }
+        }
+
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = ChatButtonName_1;
-            button2 = ChatButtonName_2; 
+
+            CheckSetupQuests();
+
+            QuestPlayer questPlayer = Main.LocalPlayer.GetModPlayer<QuestPlayer>();
+
+            List<QuestID> pendingCompletedQuests = questPlayer.GetPendingCompletedCollection();
+
+            int amountToTurnIn = 0;
+            foreach (QuestID i in pendingCompletedQuests)
+            {
+                if (QuestsCanRecieve.Contains(i))
+                {
+                    amountToTurnIn++;
+                }
+            }
+
+            bool canGivePlayerQuest = false;
+            foreach (QuestID i in QuestsCanGive)
+            {
+                if (questPlayer.CanRecieveQuest(i))
+                {
+                    canGivePlayerQuest = true;
+                    break;
+                }
+            }
+
+            if (amountToTurnIn > 0) // quest player can turn in
+            {
+                button2 = "Turn in quest"; // TODO - #QuestName
+                if (amountToTurnIn > 1)
+                {
+                    button2 += "s";
+                }
+            }
+            else if (canGivePlayerQuest) // Quest player can take quest
+            {
+                button2 = "Get Quest"; // TODO - #QuestName
+            }
+            else
+            {
+                button2 = ChatButtonName_2;
+            }
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
@@ -140,7 +211,61 @@ namespace SushiCrew.Content.NPCs
             }
             else
             {
-                OnSecondChatButtonClicked(ref shop);
+                CheckSetupQuests();
+
+                QuestPlayer questPlayer = Main.LocalPlayer.GetModPlayer<QuestPlayer>();
+
+                List<QuestID> pendingCompletedQuests = questPlayer.GetPendingCompletedCollection();
+
+                int amountToTurnIn = 0;
+                foreach (QuestID i in pendingCompletedQuests)
+                {
+                    if (QuestsCanRecieve.Contains(i))
+                    {
+                        amountToTurnIn++;
+                    }
+                }
+
+                bool canGivePlayerQuest = false;
+                foreach (QuestID i in QuestsCanGive)
+                {
+                    if (questPlayer.CanRecieveQuest(i))
+                    {
+                        canGivePlayerQuest = true;
+                        break;
+                    }
+                }
+
+                if (amountToTurnIn > 0) // quest player can turn in
+                {
+                    foreach (QuestID i in QuestsCanRecieve)
+                    {
+                        if (questPlayer.AttemptCompleteQuest(i))
+                        {
+
+                        }
+                    }
+                }
+                else if (canGivePlayerQuest) // Quest player can take quest
+                {
+                    foreach (QuestID i in QuestsCanGive)
+                    {
+                        if (questPlayer.AttemptRecieveQuest(i))
+                        {
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    OnSecondChatButtonClicked(ref shop);
+                }
+
+                //QuestPlayer questPlayer = Main.LocalPlayer.GetModPlayer<QuestPlayer>();
+                //if (questPlayer.AttemptCompleteQuest(QuestID.Example_01_Kill))
+                //{
+                //    Main.NewText("Completed!");
+                //}
             }
         }
 
@@ -150,21 +275,16 @@ namespace SushiCrew.Content.NPCs
             {
                 shop = true;
             }
-            //Main.LocalPlayer.GetModPlayer<QuestPlayer>().AttemptRecieveQuest(101);
+            //Main.LocalPlayer.GetModPlayer<QuestPlayer>().AttemptRecieveQuest(QuestID.Example_01_Kill);
         }
 
+        // Quest Button
         protected virtual void OnSecondChatButtonClicked(ref bool shop)
         {
             if (ChatButton2IsShop)
             {
                 shop = true;
             }
-            //QuestPlayer questPlayer = Main.LocalPlayer.GetModPlayer<QuestPlayer>();
-            //if (questPlayer.AttemptCompleteQuest(101))
-            //{
-            //    Main.NewText("Completed!");
-            //}
-
         }
 
         public override bool CanGoToStatue(bool toKingStatue)
